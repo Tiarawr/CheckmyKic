@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CheckMyKicks Upload</title>
+</head>
+<body>
+  <h2>Upload Foto Sepatu</h2>
+  <form action="http://localhost:3000/shoes" method="POST" enctype="multipart/form-data">
+    <label>Email:</label><br/>
+    <input type="email" name="email" required><br/><br/>
+
+    <label>Foto Sepatu:</label><br/>
+    <input type="file" name="images" accept="image/*" multiple required><br/><br/>
+
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html>
