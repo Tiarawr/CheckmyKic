@@ -5,27 +5,49 @@ export default function CheckNow() {
   const [brands, setBrands] = useState("");
   const [model, setModel] = useState("");
   const [email, setEmail] = useState("");
-  const [photos, setPhotos] = useState(null);
+  const [photos, setPhotos] = useState([]);
 
   const navigate = useNavigate();
 
   const handleCancel = () => {
-    navigate("/"); // Redirect ke halaman utama
+    navigate("/");
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
+  // Cek email valid
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Cek brand dan model tidak kosong
+    if (!brands.trim()) {
+      alert("Please enter the brand of the sneakers.");
+      return;
+    }
+
+    if (!model.trim()) {
+      alert("Please enter the model of the sneakers.");
+      return;
+    }
+
+    // Cek jumlah foto
+    if (photos.length !== 8) {
+      alert("You must upload exactly 8 photos.");
+      return;
+    }
+
+    // Lanjut submit ke backend
     const formData = new FormData();
     formData.append("brands", brands);
     formData.append("model", model);
     formData.append("email", email);
-
-    if (photos) {
-      for (let i = 0; i < photos.length; i++) {
-        formData.append("photos", photos[i]);
-      }
-    }
+    photos.forEach((photo) => {
+      formData.append("photos", photo);
+    });
 
     try {
       const response = await fetch("/api/checknow", {
@@ -35,26 +57,33 @@ export default function CheckNow() {
 
       if (!response.ok) throw new Error("Submit failed");
 
+      // Reset form
       setBrands("");
       setModel("");
       setEmail("");
-      setPhotos(null);
+      setPhotos([]);
 
-      navigate("/payment"); //
+      // Redirect ke payment
+      navigate("/payment");
     } catch (error) {
       alert("Gagal mengirim data: " + error.message);
     }
   };
 
+
   useEffect(() => {
-    // Scroll to the top when the page is loaded
     window.scrollTo(0, 0);
+    console.log("CheckNow mounted"); // ✅ log debug
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-auto w-full h-300">
+    <form
+      onSubmit={handleSubmit}
+      className="relative flex flex-col w-full min-h-screen bg-white"
+    >
       {/* Border container */}
       <div className="absolute top-[191px] left-[145px] w-[1150px] h-[927px] rounded-[30px] border-2 border-[#BFBEBE]" />
+
       {/* Labels */}
       <label
         htmlFor="brands"
@@ -80,7 +109,8 @@ export default function CheckNow() {
       >
         Email address
       </label>
-      {/* Input boxes with floating labels */}
+
+      {/* Input fields */}
       <div className="absolute top-[261px] left-[213px] w-[600px] h-[60px]">
         <label className="relative block h-full">
           <input
@@ -97,6 +127,7 @@ export default function CheckNow() {
           </span>
         </label>
       </div>
+
       <div className="absolute top-[383px] left-[213px] w-[600px] h-[60px]">
         <label className="relative block h-full">
           <input
@@ -113,16 +144,38 @@ export default function CheckNow() {
           </span>
         </label>
       </div>
-      {/* Description box */}
+
+      {/* Description box (kosong?) */}
       <div className="absolute top-[505px] left-[210px] w-[1020px] h-[420px] bg-white rounded-[20px] border border-[#BFBEBE] p-4 resize-none font-['Poppins']" />
-      {/* Photo preview box */}
-      <div className="absolute top-[545px] left-[730px] w-[440px] h-[340px] bg-white rounded-[20px] border border-[#BFBEBE]" />
-      {/* Photo upload input */}
+
+      {/* Photo Preview */}
+      <div className="absolute top-[545px] left-[730px] w-[440px] h-[340px] bg-white rounded-[20px] border border-[#BFBEBE] overflow-y-scroll p-2">
+        {photos.length > 0 ? (
+          <div className="grid grid-cols-2 gap-2">
+            {photos.map((photo, index) => (
+              <img
+                key={index}
+                src={URL.createObjectURL(photo)}
+                alt={`Upload Preview ${index + 1}`}
+                className="w-full h-[100px] object-cover rounded"
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-400 text-sm font-['Poppins'] text-center mt-10">
+            No images uploaded
+          </p>
+        )}
+      </div>
+
+      {/* Upload Button */}
       <div className="absolute top-[535px] left-[240px] w-[200px] h-[40px]">
         <div className="flex justify-center items-center w-full h-full bg-[#46ADAC] rounded-[30px] text-white text-xl font-medium font-['Poppins']">
           Photo Checklist
         </div>
       </div>
+
+      {/* Email */}
       <div className="absolute top-[987px] left-[213px] w-[600px] h-[60px]">
         <label className="relative block h-full">
           <input
@@ -139,11 +192,13 @@ export default function CheckNow() {
           </span>
         </label>
       </div>
-      {/* START A CHECK label */}
+
+      {/* Title */}
       <div className="absolute top-[145px] left-[145px] flex justify-center items-center text-[#B56868] font-['Poppins'] font-semibold text-[24px] leading-[33.43px] break-words w-[191px] h-[21px]">
         START A CHECK
       </div>
-      {/* Submit Button */}
+
+      {/* Upload Gambar Button */}
       <div className="relative top-[730px] left-[840px] w-[260px] h-[45px] bg-[#46ADAC] rounded-[10px] text-white font-semibold text-[20px] flex justify-center items-center cursor-pointer">
         Photo Upload
         <input
@@ -151,17 +206,29 @@ export default function CheckNow() {
           type="file"
           multiple
           accept="image/*"
-          onChange={(e) => setPhotos(e.target.files)}
+          onChange={(e) => {
+            const files = Array.from(e.target.files);
+            if (files.length !== 8) {
+              alert("You must upload exactly 8 photos.");
+              e.target.value = ""; // Reset input file supaya bisa upload ulang
+              setPhotos([]); // Kosongkan state
+              return;
+            }
+            setPhotos(files);
+          }}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
-      </div>{" "}
+
+      </div>
+
       {/* Photo icon */}
       <img
         src="/pfoto.svg"
         alt="Photo icon"
         className="absolute top-[670px] left-[924px] w-[60px] h-[60px]"
       />
-      {/* Checklist labels */}
+
+      {/* Checklist text */}
       <div
         className="absolute top-[595px] left-[240px] text-[#B56868] font-['Open Sans'] font-semibold text-[18px] capitalize whitespace-pre-line break-words"
         style={{ lineHeight: "1.4" }}
@@ -182,14 +249,15 @@ export default function CheckNow() {
         <br />
         8. Box Label
       </div>
-      {/* Instruction paragraph */}
+
+      {/* Instruction */}
       <div className="absolute top-[810px] left-[240px] w-[356px] text-black font-['Open Sans'] font-normal text-[18px] break-words">
         Please make sure to upload all 8 required photos with clear and proper
         lighting to ensure accurate legit checking.
       </div>
-      {/* Tombol Action Bawah */}
+
+      {/* Action buttons */}
       <div className="w-[1064px] left-[200px] top-[1158px] absolute inline-flex justify-between items-center">
-        {/* Tombol CANCEL */}
         <button
           type="button"
           onClick={handleCancel}
@@ -200,7 +268,6 @@ export default function CheckNow() {
           </span>
         </button>
 
-        {/* Tombol NEXT */}
         <button
           type="submit"
           className="w-48 h-16 px-16 py-6 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5"
