@@ -11,7 +11,7 @@ import { Footer } from "./Footer";
 import Explore from "./Explore";
 import CheckNow from "./CheckNow";
 import Payment from "./Payments";
-
+import Pay from "./pay";
 
 function App() {
   const location = useLocation();
@@ -47,6 +47,7 @@ function App() {
         />
         <Route path="/checknow" element={<CheckNow />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/pay" element={<Pay />} />
       </Routes>
     </>
   );

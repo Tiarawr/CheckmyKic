@@ -6,11 +6,10 @@ export default function Payment() {
   const navigate = useNavigate();
 
   const handlePay = () => {
-    if (!selected) {
-      alert("Silakan pilih metode pembayaran.");
+    if (selected !== "BNI Virtual Account") {
+      alert("Hanya BNI Virtual Account yang bisa diproses saat ini.");
     } else {
-      alert(`Kamu memilih metode: ${selected}`);
-      // bisa tambahkan logika navigasi atau fetch QRIS di sini
+      navigate("/pay");
     }
   };
 
