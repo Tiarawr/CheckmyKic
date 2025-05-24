@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/shoes": "http://localhost:3000",
       "/api": "http://localhost:3000",
     },
   },

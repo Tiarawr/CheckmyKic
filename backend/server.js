@@ -9,9 +9,6 @@ const mysql = require("mysql2/promise");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Import route QRIS
-const createQRISRoutes = require("./routes/createQRIS");
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -80,7 +77,7 @@ app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
   }
 });
 
-// ✅ Tambahkan endpoint ini untuk frontend (/api/latest-shoe)
+//Tambahkan endpoint ini untuk frontend (/api/latest-shoe)
 app.get("/api/latest-shoe", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   try {
@@ -100,34 +97,6 @@ app.get("/api/latest-shoe", async (req, res) => {
     await connection.end();
   }
 });
-
-// Webhook dari Xendit QRIS
-app.post("/webhook/qris", async (req, res) => {
-  try {
-    const { external_id } = req.body;
-
-    if (!external_id) {
-      console.warn("[WEBHOOK] external_id kosong");
-      return res.status(400).send("Invalid webhook payload");
-    }
-
-    const connection = await mysql.createConnection(dbConfig);
-    await connection.execute(
-      "UPDATE payments SET status = 'paid', paid_at = NOW() WHERE external_id = ?",
-      [external_id]
-    );
-    await connection.end();
-
-    console.log(`[WEBHOOK] Pembayaran diterima untuk ${external_id}`);
-    res.status(200).send("OK");
-  } catch (err) {
-    console.error("[ERROR WEBHOOK]", err);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// Tambahkan route create-qris
-app.use("/api", createQRISRoutes);
 
 // Tes route
 app.get("/test", (req, res) => {

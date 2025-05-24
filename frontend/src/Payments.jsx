@@ -23,13 +23,9 @@ export default function Payment() {
           )}
         </div>
       </div>
-      <div
-        className={`w-6 h-6 rounded-full border border-stone-300 flex justify-center items-center ${
-          selected === label ? "bg-white" : "bg-white"
-        }`}
-      >
+      <div className="w-6 h-6 rounded-full border border-stone-300 flex justify-center items-center">
         {selected === label && (
-          <div className="w-6 h-6 rounded-full bg-[#46ADAC]" />
+          <div className="w-3 h-3 rounded-full bg-[#46ADAC]" />
         )}
       </div>
     </div>
@@ -38,8 +34,10 @@ export default function Payment() {
   const handlePay = async () => {
     if (selected === "QRIS") {
       try {
-        // Get latest shoe_id from backend (assume backend provides endpoint to get latest)
         const shoeRes = await fetch("/api/latest-shoe");
+        if (!shoeRes.ok) {
+          throw new Error("Gagal mengambil data sepatu");
+        }
         const { shoe_id } = await shoeRes.json();
 
         const qrisRes = await fetch("/api/create-qris", {
@@ -52,6 +50,10 @@ export default function Payment() {
             amount: 50000,
           }),
         });
+
+        if (!qrisRes.ok) {
+          throw new Error("Gagal membuat QRIS");
+        }
 
         const qrisData = await qrisRes.json();
 
@@ -85,11 +87,11 @@ export default function Payment() {
           Virtual Account
         </h2>
         <div className="bg-white rounded-[20px] border border-stone-300 p-6 flex flex-col gap-6">
-          {["BNI", "BRI", "BCA", "BSI", "MANDIRI"].map((bank, idx) => (
+          {["BNI", "BRI", "BCA", "BSI", "MANDIRI"].map((bank) => (
             <div key={bank}>
               {renderRadio(
                 `${bank} Virtual Account`,
-                `https://placehold.co/60x20?text=${bank}`,
+                `/images/${bank.toLowerCase()}.svg`, // sesuaikan nama file di public/images/
                 "va"
               )}
             </div>
@@ -102,9 +104,9 @@ export default function Payment() {
           E-wallet
         </div>
         <div className="w-full bg-white rounded-[20px] border border-stone-300 p-6 flex flex-col gap-6">
-          {renderRadio("GoPay", "gopay 1.svg", "ewallet")}
-          {renderRadio("DANA", "dana 3.svg", "ewallet")}
-          {renderRadio("OVO", "/ovo-removebg-preview.svg", "ewallet")}
+          {renderRadio("GoPay", "/images/gopay.svg", "ewallet")}
+          {renderRadio("DANA", "/images/dana.svg", "ewallet")}
+          {renderRadio("OVO", "/images/ovo.svg", "ewallet")}
         </div>
       </div>
 
@@ -122,13 +124,9 @@ export default function Payment() {
               QRIS
             </div>
           </div>
-          <div
-            className={`w-6 h-6 rounded-full border border-stone-300 flex justify-center items-center ${
-              selected === "QRIS" ? "bg-white" : "bg-white"
-            }`}
-          >
+          <div className="w-6 h-6 rounded-full border border-stone-300 flex justify-center items-center">
             {selected === "QRIS" && (
-              <div className="w-6 h-6 rounded-full bg-[#46ADAC]" />
+              <div className="w-3 h-3 rounded-full bg-[#46ADAC]" />
             )}
           </div>
         </div>
