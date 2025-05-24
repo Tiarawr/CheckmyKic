@@ -47,7 +47,7 @@ const Header = () => {
         </a>
 
         <a
-          href="/review"
+          href="#review"
           className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
         >
           Review

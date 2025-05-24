@@ -1,6 +1,6 @@
 export function Review() {
   return (
-    <div className="w-full h-[1117px] relative overflow-hidden">
+    <div id="review" className="w-full h-[1117px] relative overflow-hidden">
       <div className="w-60 h-16 left-[601px] top-[4px] absolute justify-center text-[#46ADAC] text-6xl font-semibold font-['Poppins'] leading-[76.61px]">
         Reviews
       </div>
