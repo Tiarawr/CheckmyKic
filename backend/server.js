@@ -9,7 +9,6 @@ const mysql = require("mysql2/promise");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Import route QRIS
 const createQRISRoutes = require("./routes/createQRIS");
 
 // Middleware
@@ -80,7 +79,7 @@ app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
   }
 });
 
-// ✅ Tambahkan endpoint ini untuk frontend (/api/latest-shoe)
+//Tambahkan endpoint ini untuk frontend (/api/latest-shoe)
 app.get("/api/latest-shoe", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   try {
