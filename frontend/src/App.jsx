@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
 import AuthenticSection from "./AuthenticSection";
@@ -10,11 +10,16 @@ import { Review } from "./Review";
 import { Footer } from "./Footer";
 import Explore from "./Explore";
 import CheckNow from "./CheckNow";
+import Payment from "./Payments";
+import QRDisplay from "./QRDisplay";
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
-      <Header />
+      {/* Show Header on all routes except /payment */}
+      {location.pathname !== "/payment" && <Header />}
 
       <Routes>
         <Route
@@ -41,6 +46,11 @@ function App() {
           }
         />
         <Route path="/checknow" element={<CheckNow />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route
+          path="/qris-display"
+          element={<QRDisplay shoeId={64} amount={50000} />}
+        />
       </Routes>
     </>
   );

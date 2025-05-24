@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckNow() {
   const [brands, setBrands] = useState("");
   const [model, setModel] = useState("");
   const [email, setEmail] = useState("");
   const [photos, setPhotos] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/"); // Redirect ke halaman utama
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +32,17 @@ export default function CheckNow() {
         method: "POST",
         body: formData,
       });
+
       if (!response.ok) throw new Error("Submit failed");
-      alert("Data berhasil dikirim!");
+
       setBrands("");
       setModel("");
       setEmail("");
       setPhotos(null);
+
+      navigate("/payment"); // 
     } catch (error) {
-      alert(error.message);
+      alert("Gagal mengirim data: " + error.message);
     }
   };
 
@@ -42,7 +52,7 @@ export default function CheckNow() {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-auto w-full h-full">
+    <form onSubmit={handleSubmit} className="flex flex-auto w-full h-300">
       {/* Border container */}
       <div className="absolute top-[191px] left-[145px] w-[1150px] h-[927px] rounded-[30px] border-2 border-[#BFBEBE]" />
       {/* Labels */}
@@ -177,11 +187,29 @@ export default function CheckNow() {
         Please make sure to upload all 8 required photos with clear and proper
         lighting to ensure accurate legit checking.
       </div>
-      {/* Next button */}
-      <button className="absolute top-[1080px] left-[580px] w-[300px] h-[70px] bg-[#B56868] rounded-[40px] flex justify-center items-center text-white text-[24px] font-semibold cursor-pointer">
-        Next{" "}
-      </button>
-      <div className="w-full h-280"></div>{" "}
+      {/* Tombol Action Bawah */}
+      <div className="w-[1064px] left-[200px] top-[1158px] absolute inline-flex justify-between items-center">
+        {/* Tombol CANCEL */}
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="w-52 h-16 px-12 py-5 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5"
+        >
+          <span className="text-white text-xl font-bold font-['Open_Sans'] uppercase tracking-[3px]">
+            Cancel
+          </span>
+        </button>
+
+        {/* Tombol NEXT */}
+        <button
+          type="submit"
+          className="w-48 h-16 px-16 py-6 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5"
+        >
+          <span className="text-white text-xl font-bold font-['Open_Sans'] uppercase tracking-[3px]">
+            Next
+          </span>
+        </button>
+      </div>
     </form>
   );
 }
