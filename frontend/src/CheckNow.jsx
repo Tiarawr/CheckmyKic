@@ -40,7 +40,7 @@ export default function CheckNow() {
       setEmail("");
       setPhotos(null);
 
-      navigate("/payment"); // 
+      navigate("/payment"); //
     } catch (error) {
       alert("Gagal mengirim data: " + error.message);
     }
@@ -140,7 +140,7 @@ export default function CheckNow() {
         </label>
       </div>
       {/* START A CHECK label */}
-      <div className="absolute top-[145px] left-[145px] flex justify-center items-center text-[#B56868] font-['Poppins'] font-semibold text-[24px] leading-[33.43px] break-words w-[191px] h-[21px]">
+      {/* <div className="absolute top-[145px] left-[145px] flex justify-center items-center text-[#B56868] font-['Poppins'] font-semibold text-[24px] leading-[33.43px] break-words w-[191px] h-[21px]">
         START A CHECK
       </div>
       {/* Submit Button */}
@@ -154,7 +154,7 @@ export default function CheckNow() {
           onChange={(e) => setPhotos(e.target.files)}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
-      </div>
+      </div>{" "}
       {/* Photo icon */}
       <img
         src="/pfoto.svg"
