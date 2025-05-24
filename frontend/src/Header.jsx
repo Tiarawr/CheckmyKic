@@ -1,10 +1,26 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 const Header = () => {
   const navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState(""); // state untuk menu aktif
 
   const handleLogoClick = (e) => {
     e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
     navigate("/");
+    setActiveMenu(""); // reset menu aktif jika klik logo
+  };
+
+  const handleSmoothScroll = (id) => (e) => {
+    e.preventDefault();
+    setActiveMenu(id); // set menu aktif
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = id === "why" ? -80 : 0;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
@@ -27,28 +43,40 @@ const Header = () => {
       <nav className="flex gap-12">
         <a
           href="/explore"
-          className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
+          className={`text-white/75 text-[16px] uppercase tracking-[0.15em] font-open ${
+            activeMenu === "explore" ? "font-black" : "font-semibold"
+          }`}
+          onClick={() => setActiveMenu("explore")}
         >
           Explore
         </a>
 
         <a
           href="#work"
-          className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
+          onClick={handleSmoothScroll("work")}
+          className={`text-white/75 text-[16px] uppercase tracking-[0.15em] font-open cursor-pointer ${
+            activeMenu === "work" ? "font-black" : "font-semibold"
+          }`}
         >
           How we work
         </a>
 
         <a
           href="#why"
-          className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
+          onClick={handleSmoothScroll("why")}
+          className={`text-white/75 text-[16px] uppercase tracking-[0.15em] font-open cursor-pointer ${
+            activeMenu === "why" ? "font-black" : "font-semibold"
+          }`}
         >
           Why choose us
         </a>
 
         <a
           href="#review"
-          className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
+          onClick={handleSmoothScroll("review")}
+          className={`text-white/75 text-[16px] uppercase tracking-[0.15em] font-open cursor-pointer ${
+            activeMenu === "review" ? "font-black" : "font-semibold"
+          }`}
         >
           Review
         </a>

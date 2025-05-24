@@ -144,7 +144,7 @@ export default function CheckNow() {
         START A CHECK
       </div>
       {/* Submit Button */}
-      <div className="relative top-[770px] left-[840px] w-[260px] h-[45px] bg-[#46ADAC] rounded-[10px] text-white font-semibold text-[20px] flex justify-center items-center cursor-pointer">
+      <div className="relative top-[730px] left-[840px] w-[260px] h-[45px] bg-[#46ADAC] rounded-[10px] text-white font-semibold text-[20px] flex justify-center items-center cursor-pointer">
         Photo Upload
         <input
           id="photos"
@@ -166,21 +166,21 @@ export default function CheckNow() {
         className="absolute top-[595px] left-[240px] text-[#B56868] font-['Open Sans'] font-semibold text-[18px] capitalize whitespace-pre-line break-words"
         style={{ lineHeight: "1.4" }}
       >
-        Appearance
+        1. Appearance
         <br />
-        Size Tag Left
+        2. Size Tag Left
         <br />
-        Size Tag Right
+        3. Size Tag Right
         <br />
-        Back of Insole Left
+        4. Back of Insole Left
         <br />
-        Back of Insole Right
+        5. Back of Insole Right
         <br />
-        Insole Stitching (1)
+        6. Insole Stitching (1)
         <br />
-        Insole Stitching (2)
+        7. Insole Stitching (2)
         <br />
-        Box Label
+        8. Box Label
       </div>
       {/* Instruction paragraph */}
       <div className="absolute top-[810px] left-[240px] w-[356px] text-black font-['Open Sans'] font-normal text-[18px] break-words">
