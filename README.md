@@ -52,8 +52,8 @@ EMAIL_APP_PASSWORD=your_app_password
 ## 📦 Instalasi & Menjalankan Server
 
 ```bash
-git clone https://github.com/username/repo.git
-cd repo
+git clone https://github.com/Tiarawr/CheckmyKic
+cd CheckmyKic
 npm install
 node server.js
 ```
