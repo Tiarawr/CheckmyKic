@@ -1,6 +1,6 @@
 export default function WhyChooseUs() {
   return (
-    <div className="w-[1440px] h-[606px] relative overflow-hidden">
+    <div id="why" className="w-[1440px] h-[606px] relative overflow-hidden">
       <div className="w-120 h-20 absolute left-[502px] top-[60px] text-center flex justify-center items-center text-[#46ADAC] text-5xl font-semibold font-['Poppins']">
         Why Choose us ?
       </div>

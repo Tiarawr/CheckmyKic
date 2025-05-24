@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 
 const CheckMyKicks = () => {
   return (
-    <div className="w-full h-[1058px] relative  bg-[#B56868] overflow-hidden">
+    <div id="work" className="w-full h-[1058px] relative  bg-[#B56868] overflow-hidden">
       <div className="w-[593px] h-40 left-[142px] top-[80px] absolute justify-start text-white text-6xl font-semibold font-['Poppins'] leading-[83.57px]">
         How checkmykicks
         <br />

@@ -33,14 +33,14 @@ const Header = () => {
         </a>
 
         <a
-          href="/work"
+          href="#work"
           className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
         >
           How we work
         </a>
 
         <a
-          href="/why"
+          href="#why"
           className="text-white/75 text-[16px] font-semibold uppercase tracking-[0.15em] font-open"
         >
           Why choose us

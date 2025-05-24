@@ -13,6 +13,7 @@ import CheckNow from "./CheckNow";
 import Payment from "./Payments";
 import QRDisplay from "./QRDisplay";
 
+
 function App() {
   const location = useLocation();
 

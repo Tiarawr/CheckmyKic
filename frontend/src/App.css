@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +44,8 @@
 
 .read-the-docs {
   color: #888;
+}
+
+#work {
+  scroll-margin-top: 100px; /* atau setinggi header-mu, misal 90px */
 }
