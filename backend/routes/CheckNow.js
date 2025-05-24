@@ -32,7 +32,7 @@ const dbConfig = {
   host: "localhost",
   user: "root",
   password: "", // sesuaikan
-  database: "your_db_name", // ganti dengan nama database kamu
+  database: "checkmykicks", // ganti dengan nama database kamu
 };
 
 // Root

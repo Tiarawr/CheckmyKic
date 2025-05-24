@@ -140,7 +140,7 @@ export default function CheckNow() {
         </label>
       </div>
       {/* START A CHECK label */}
-      {/* <div className="absolute top-[145px] left-[145px] flex justify-center items-center text-[#B56868] font-['Poppins'] font-semibold text-[24px] leading-[33.43px] break-words w-[191px] h-[21px]">
+      <div className="absolute top-[145px] left-[145px] flex justify-center items-center text-[#B56868] font-['Poppins'] font-semibold text-[24px] leading-[33.43px] break-words w-[191px] h-[21px]">
         START A CHECK
       </div>
       {/* Submit Button */}
