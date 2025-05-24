@@ -11,15 +11,19 @@ import { Footer } from "./Footer";
 import Explore from "./Explore";
 import CheckNow from "./CheckNow";
 import Payment from "./Payments";
-
+import Paynow from "./PayNow";
+import PaymentStatus from "./PaymentStatus";
 
 function App() {
   const location = useLocation();
 
+  // List route tanpa header
+  const noHeaderRoutes = ["/payment", "/paynow", "/payment-status"];
+  const hideHeader = noHeaderRoutes.includes(location.pathname);
+
   return (
     <>
-      {/* Show Header on all routes except /payment */}
-      {location.pathname !== "/payment" && <Header />}
+      {!hideHeader && <Header />}
 
       <Routes>
         <Route
@@ -47,9 +51,10 @@ function App() {
         />
         <Route path="/checknow" element={<CheckNow />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/paynow" element={<Paynow />} />
+        <Route path="/payment-status" element={<PaymentStatus />} />
       </Routes>
     </>
   );
 }
-
 export default App;

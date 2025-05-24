@@ -5,12 +5,50 @@ export default function Payment() {
   const [selected, setSelected] = useState("");
   const navigate = useNavigate();
 
-  const handlePay = () => {
+  const handlePay = async () => {
     if (!selected) {
       alert("Silakan pilih metode pembayaran.");
+      return;
+    }
+
+    if (selected.includes("Virtual Account")) {
+      const bankCodeMap = {
+        "BNI Virtual Account": "BNI",
+        "BRI Virtual Account": "BRI",
+        "BCA Virtual Account": "BCA",
+        "BSI Virtual Account": "BSI",
+        "MANDIRI Virtual Account": "MANDIRI",
+      };
+
+      const bank_code = bankCodeMap[selected];
+      const name = "John Doe";
+      const expected_amount = 50000;
+
+      try {
+        const res = await fetch("/api/create-va", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ bank_code, name, expected_amount }),
+        });
+
+        const vaData = await res.json();
+
+        if (vaData.account_number && vaData.shoe_id) {
+          navigate("/paynow", {
+            state: {
+              ...vaData,
+              shoe_id: vaData.shoe_id,
+            },
+          });
+        } else {
+          alert("Gagal membuat Virtual Account.");
+        }
+      } catch (err) {
+        console.error("Gagal:", err);
+        alert("Terjadi kesalahan saat membuat Virtual Account.");
+      }
     } else {
-      alert(`Kamu memilih metode: ${selected}`);
-      // bisa tambahkan logika navigasi atau fetch QRIS di sini
+      alert("Metode pembayaran e-wallet belum dihubungkan.");
     }
   };
 

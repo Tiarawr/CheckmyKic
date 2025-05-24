@@ -31,8 +31,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const dbConfig = {
   host: "localhost",
   user: "root",
-  password: "", // sesuaikan
-  database: "checkmykicks", // ganti dengan nama database kamu
+  password: "",
+  database: "checkmykicks",
 };
 
 // Root
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the CheckMyKicks backend!");
 });
 
-// ✅ POST /api/checknow — langsung di sini
+// POST /api/checknow — langsung di sini
 app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   try {
