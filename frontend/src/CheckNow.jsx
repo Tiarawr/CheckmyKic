@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckNow() {
   const [brands, setBrands] = useState("");
@@ -8,10 +9,10 @@ export default function CheckNow() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [zoomedPhoto, setZoomedPhoto] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleCancel = () => {
-    // Navigate to home - you can implement your navigation logic here
-    console.log("Navigating to home");
+    navigate("/");
   };
 
   const handleSubmit = async (e) => {
@@ -54,6 +55,7 @@ export default function CheckNow() {
       setModel("");
       setEmail("");
       setPhotos([]);
+      navigate("/payment", { state: { shoe_id: responseData.shoe_id } });
 
       // Navigate to payment - you can implement your navigation logic here
       console.log("Navigating to payment with shoe_id:", responseData.shoe_id);
