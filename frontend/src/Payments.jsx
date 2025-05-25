@@ -126,7 +126,7 @@ export default function Payment() {
       <div className="w-[1054px] absolute left-[200px] top-[690px] flex justify-between items-center">
         <button
           onClick={() => navigate("/checknow")}
-          className="w-72 h-16 px-14 py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5"
+          className="w-72 h-16 px-14 py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5 cursor-pointer"
         >
           <span className="text-white text-2xl font-bold font-['Open_Sans'] uppercase tracking-[3.60px]">
             BACK
@@ -135,7 +135,7 @@ export default function Payment() {
 
         <button
           onClick={handlePay}
-          className="w-72 h-16 px-14 py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center gap-2.5"
+          className="w-72 h-16 px-14 py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center gap-2.5 cursor-pointer"
         >
           <span className="text-white text-2xl font-bold font-['Open_Sans'] uppercase tracking-[3.60px]">
             Pay NOW

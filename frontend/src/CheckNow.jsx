@@ -340,7 +340,7 @@ export default function CheckNow() {
           <button
             type="button"
             onClick={handleCancel}
-            className="w-full sm:w-52 h-12 md:h-16 px-8 md:px-12 py-3 md:py-5 bg-[#B56868] rounded-3xl md:rounded-[40px] flex justify-center items-center"
+            className="w-full sm:w-52 h-12 md:h-16 px-8 md:px-12 py-3 md:py-5 bg-[#B56868] rounded-3xl md:rounded-[40px] flex justify-center items-center cursor-pointer"
           >
             <span className="text-white text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px]">
               Cancel
