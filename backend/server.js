@@ -11,7 +11,12 @@ const { sendPaymentSuccessEmail } = require("./emailService");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const dbConfig = process.env.DATABASE_URL;
+const dbConfig = {
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "checkmykicks",
+};
 
 app.use(cors());
 app.use(express.json());
@@ -30,7 +35,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
-  const connection = await mysql.createConnection({ uri: dbConfig });
+  const connection = await mysql.createConnection(dbConfig);
   try {
     const { email, brands, model } = req.body;
     if (!email || !brands || !model || !req.files?.length) {
