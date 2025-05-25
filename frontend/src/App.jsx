@@ -7,7 +7,7 @@ import CheckMyKicks from "./CheckMyKicks";
 import WhyChooseUs from "./WhyChooseUs";
 import { Explore1 } from "./Explore1";
 import Review from "./Review";
-import { Footer } from "./Footer";
+import Footer from "./Footer";
 import Explore from "./Explore";
 import CheckNow from "./CheckNow";
 import Payment from "./Payments";

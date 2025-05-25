@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Payment() {
-  const [selected, setSelected] = useState("");
   const navigate = useNavigate();
-
   const { state } = useLocation();
-  const { shoe_id } = state || {};
+  const shoe_id = state?.shoe_id;
+
+  const [selected, setSelected] = useState("");
 
   const handlePay = async () => {
     if (!selected) {
       alert("Silakan pilih metode pembayaran.");
+      return;
+    }
+    if (!shoe_id) {
+      alert("Missing shoe_id—please start from the CheckNow page.");
       return;
     }
 
@@ -28,16 +31,40 @@ export default function Payment() {
       const name = "John Doe";
       const expected_amount = 50000;
 
-      console.log({ bank_code, name, expected_amount, shoe_id });
+      console.log("Sending request:", {
+        bank_code,
+        name,
+        expected_amount,
+        shoe_id,
+      });
 
       try {
         const res = await fetch("/api/create-va", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ bank_code, name, expected_amount, shoe_id }),
+          body: JSON.stringify({
+            bank_code,
+            name,
+            expected_amount,
+            // ensure shoe_id is a number if your DB expects it:
+            shoe_id: Number(shoe_id),
+          }),
         });
 
+        console.log("Response status:", res.status);
+        console.log("Response headers:", res.headers);
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          console.error("API Error:", errorText);
+          alert(
+            `Server error (${res.status}): ${errorText || "Unknown error"}`
+          );
+          return;
+        }
+
         const vaData = await res.json();
+        console.log("VA Data received:", vaData);
 
         if (vaData.account_number && vaData.shoe_id) {
           navigate("/paynow", {
@@ -47,11 +74,12 @@ export default function Payment() {
             },
           });
         } else {
-          alert("Gagal membuat Virtual Account.");
+          console.error("Invalid VA data:", vaData);
+          alert("Gagal membuat Virtual Account: Data tidak lengkap.");
         }
       } catch (err) {
-        console.error("Gagal:", err);
-        alert("Terjadi kesalahan saat membuat Virtual Account.");
+        console.error("Network/Parse error:", err);
+        alert(`Terjadi kesalahan: ${err.message}`);
       }
     } else {
       alert("Metode pembayaran e-wallet belum dihubungkan.");
@@ -60,87 +88,108 @@ export default function Payment() {
 
   const renderRadio = (label, imgSrc, type) => (
     <div
-      className="flex justify-between items-center cursor-pointer"
+      className="flex justify-between items-center cursor-pointer p-2 hover:bg-gray-50 rounded-lg transition-colors"
       onClick={() => setSelected(label)}
     >
-      <div className="flex items-center gap-4">
-        <img src={imgSrc} alt={label} className="w-10 h-10 object-contain" />
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded flex items-center justify-center flex-shrink-0">
+          <span className="text-xs font-bold text-gray-600">
+            {label.split(" ")[0].substring(0, 3)}
+          </span>
+        </div>
         <div>
-          <div className="text-black text-xl font-normal font-['Open_Sans'] leading-7">
+          <div className="text-black text-base sm:text-xl font-normal font-['Open_Sans'] leading-tight sm:leading-7">
             {label}
           </div>
           {type === "ewallet" && (
-            <div className="text-black text-sm font-normal font-['Open_Sans'] leading-tight">
+            <div className="text-black text-xs sm:text-sm font-normal font-['Open_Sans'] leading-tight">
               activate this payment first
             </div>
           )}
         </div>
       </div>
-      <div className="w-6 h-6 rounded-full border border-stone-300 flex justify-center items-center">
+      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-stone-300 flex justify-center items-center flex-shrink-0">
         {selected === label && (
-          <div className="w-3 h-3 rounded-full bg-[#46ADAC]" />
+          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#46ADAC]" />
         )}
       </div>
     </div>
   );
 
   return (
-    <div className="w-full h-[895px] relative bg-stone-50">
-      <div className="w-80 h-5 left-[144px] top-[60px] absolute text-[#B56868] text-2xl font-semibold font-['Poppins'] leading-loose">
-        SELECT PAYMENT METHOD
+    <div className="min-h-screen bg-stone-50 px-4 py-6 sm:px-6 lg:px-8">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-[#B56868] text-xl sm:text-2xl font-semibold font-['Poppins'] leading-loose">
+          SELECT PAYMENT METHOD
+        </h1>
       </div>
 
-      {/* Virtual Account Section */}
-      <div className="w-[466px] absolute left-[800px] top-[140px] flex flex-col gap-4 z-10">
-        <h2 className="text-black text-xl font-semibold font-['Open_Sans']">
-          Virtual Account
-        </h2>
-        <div className="bg-white rounded-[20px] border border-stone-300 p-6 flex flex-col gap-6">
-          {[
-            { label: "BNI Virtual Account", img: "BNI 1.svg" },
-            { label: "BRI Virtual Account", img: "bri.svg" },
-            { label: "BCA Virtual Account", img: "BCA 1.svg" },
-            { label: "BSI Virtual Account", img: "bsi.svg" },
-            { label: "MANDIRI Virtual Account", img: "mandiri.svg" },
-          ].map((bank) => (
-            <div key={bank.label}>
-              {renderRadio(bank.label, bank.img, "va")}
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+          {/* E-Wallet Section - Mobile First */}
+          <div className="w-full lg:w-1/2 lg:order-1">
+            <h2 className="text-black text-lg sm:text-xl font-semibold font-['Open_Sans'] mb-4">
+              E-wallet
+            </h2>
+            <div className="bg-white rounded-[20px] border border-stone-300 p-4 sm:p-6">
+              <div className="flex flex-col gap-4 sm:gap-6">
+                {renderRadio("GoPay", "gopay 1.svg", "ewallet")}
+                <div className="border-t border-gray-100"></div>
+                {renderRadio("DANA", "dana 3.svg", "ewallet")}
+                <div className="border-t border-gray-100"></div>
+                {renderRadio("OVO", "ovo.svg", "ewallet")}
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      {/* E-Wallet Section */}
-      <div className="w-[468px] left-[240px] top-[141px] absolute flex flex-col gap-4">
-        <div className="text-black text-xl font-semibold font-['Open_Sans']">
-          E-wallet
+          {/* Virtual Account Section */}
+          <div className="w-full lg:w-1/2 lg:order-2">
+            <h2 className="text-black text-lg sm:text-xl font-semibold font-['Open_Sans'] mb-4">
+              Virtual Account
+            </h2>
+            <div className="bg-white rounded-[20px] border border-stone-300 p-4 sm:p-6">
+              <div className="flex flex-col gap-4 sm:gap-6">
+                {[
+                  { label: "BNI Virtual Account", img: "BNI 1.svg" },
+                  { label: "BRI Virtual Account", img: "bri.svg" },
+                  { label: "BCA Virtual Account", img: "BCA 1.svg" },
+                  { label: "BSI Virtual Account", img: "bsi.svg" },
+                  { label: "MANDIRI Virtual Account", img: "mandiri.svg" },
+                ].map((bank, index) => (
+                  <div key={bank.label}>
+                    {renderRadio(bank.label, bank.img, "va")}
+                    {index < 4 && (
+                      <div className="border-t border-gray-100"></div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-full bg-white rounded-[20px] border border-stone-300 p-6 flex flex-col gap-6">
-          {renderRadio("GoPay", "gopay 1.svg", "ewallet")}
-          {renderRadio("DANA", "dana 3.svg", "ewallet")}
-          {renderRadio("OVO", "ovo.svg", "ewallet")}
+
+        {/* Navigation Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:justify-between items-center mt-8 sm:mt-12">
+          <button
+            onClick={() => navigate("/checknow")}
+            className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center order-2 sm:order-1"
+          >
+            <span className="text-white text-lg sm:text-2xl font-bold font-['Open_Sans'] uppercase tracking-[2px] sm:tracking-[3.60px]">
+              BACK
+            </span>
+          </button>
+
+          <button
+            onClick={handlePay}
+            className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center order-1 sm:order-2"
+          >
+            <span className="text-white text-lg sm:text-2xl font-bold font-['Open_Sans'] uppercase tracking-[2px] sm:tracking-[3.60px]">
+              Pay NOW
+            </span>
+          </button>
         </div>
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="w-[1054px] absolute left-[200px] top-[690px] flex justify-between items-center">
-        <button
-          onClick={() => navigate("/checknow")}
-          className="w-72 h-16 px-14 py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center gap-2.5"
-        >
-          <span className="text-white text-2xl font-bold font-['Open_Sans'] uppercase tracking-[3.60px]">
-            BACK
-          </span>
-        </button>
-
-        <button
-          onClick={handlePay}
-          className="w-72 h-16 px-14 py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center gap-2.5"
-        >
-          <span className="text-white text-2xl font-bold font-['Open_Sans'] uppercase tracking-[3.60px]">
-            Pay NOW
-          </span>
-        </button>
       </div>
     </div>
   );

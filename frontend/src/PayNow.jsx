@@ -1,123 +1,188 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Paynow() {
-  const { state } = useLocation();
-
-  const {
-    account_number = "123456789101112",
-    expected_amount = 50000,
-    bank_code = "BNI",
-    shoe_id = null,
-  } = state || {};
-
-  const bankLogos = {
-    BNI: "BNI 1.svg",
-    BRI: "bri.svg",
-    BCA: "BCA 1.svg",
-    BSI: "bsi.svg",
-    MANDIRI: "mandiri.svg",
-  };
   const navigate = useNavigate();
+  const { state } = useLocation();
+  if (!state) {
+    // If someone lands here directly, redirect back
+    navigate("/checknow");
+    return null;
+  }
+
+  const { account_number, expected_amount, bank_code, shoe_id } = state;
+
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  const handleViewStatus = () => {
+    navigate(`/payment-status/${shoe_id}`);
+  };
 
   return (
-    <div className="w-[1440px] h-[1357px] relative bg-stone-50">
-      <div className="w-72 h-5 left-[144px] top-[80px] absolute justify-center text-[#B56868] text-2xl font-semibold font-['Poppins'] uppercase leading-loose">
-        waiting for payment
-      </div>
-
-      <div className="w-64 h-5 left-[144px] top-[496px] absolute justify-center text-[#B56868] text-2xl font-semibold font-['Poppins'] leading-loose">
-        Payment Instructions
-      </div>
-
-      <div className="w-[1152px] h-[595px] left-[144px] top-[536px] absolute bg-white rounded-[20px] border border-stone-300" />
-
-      <div className="w-24 h-5 left-[184px] top-[576px] absolute justify-center text-black text-xl font-semibold font-Open leading-7">
-        {bank_code} ATM
-      </div>
-
-      <div className="w-[811px] h-60 left-[221px] top-[607px] absolute justify-center text-black text-lg font-normal font-Open leading-relaxed">
-        Insert your card.
-        <br />
-        Select your preferred language.
-        <br />
-        Enter your ATM PIN.
-        <br />
-        Then, select "Other Menu."
-        <br />
-        Choose "Transfer" and select the type of account you will use (e.g.,
-        'From Savings Account').
-        <br />
-        Select "Virtual Account Billing." Enter your Virtual Account number
-        (e.g., {account_number}).
-        <br />
-        The bill to be paid will appear on the confirmation screen.
-        <br />
-        Confirm the transaction if the details are correct.
-        <br />
-        Your transaction is complete.
-      </div>
-
-      <div className="w-48 h-5 left-[184px] top-[860px] absolute justify-center text-black text-xl font-semibold font-Open leading-7">
-        {bank_code} Mobile Banking
-      </div>
-
-      <div className="w-[761px] h-48 left-[221px] top-[891px] absolute justify-center text-black text-lg font-normal font-Open leading-relaxed">
-        Access {bank_code} Mobile Banking via your phone.
-        <br />
-        Enter your User ID and password.
-        <br />
-        Select the "Transfer" menu.
-        <br />
-        Choose "Virtual Account Billing," then select your debit account.
-        <br />
-        Enter your Virtual Account number (e.g., {account_number}) in the "New
-        Input" menu.
-        <br />
-        The bill to be paid will appear on the confirmation screen.
-        <br />
-        Confirm the transaction and enter your Transaction Password.
-        <br />
-        Your payment has been successfully completed.
-      </div>
-
-      <div className="w-[624px] h-64 left-[408px] top-[161px] absolute bg-white rounded-[20px] shadow-[-9px_9px_4px_0px_rgba(0,0,0,0.25)] border border-stone-300" />
-
-      <div className="w-14 h-5 left-[438px] top-[242px] absolute overflow-hidden">
-        <img
-          className="w-14 h-5 left-0 top-0 absolute"
-          src={bankLogos[bank_code] || "https://placehold.co/60x20"}
-          alt={bank_code}
-        />
-      </div>
-
-      <div className="w-56 h-4 left-[438px] top-[272px] absolute justify-center text-black text-xl font-normal font-['Poppins'] leading-7">
-        Nomor Virtual Account
-      </div>
-
-      <div className="w-52 h-4 left-[759px] top-[272px] absolute justify-center text-black text-2xl font-semibold font-['Poppins'] leading-loose tracking-wide">
-        {account_number}
-      </div>
-
-      <div className="w-20 h-4 left-[438px] top-[328px] absolute justify-center text-black text-xl font-normal font-['Poppins'] leading-7">
-        total bill
-      </div>
-
-      <div className="w-32 h-4 left-[759px] top-[325px] absolute justify-center text-black text-2xl font-semibold font-['Poppins'] leading-loose tracking-wide">
-        Rp{expected_amount.toLocaleString("id-ID")}
-      </div>
-
-      <div className="w-40 h-5 left-[642px] top-[191px] absolute justify-center text-black text-xl font-semibold font-Open leading-7">
-        payment details
-      </div>
-
-      <button
-        onClick={() => navigate("/payment-status", { state: { shoe_id } })}
-        className="w-[478px] h-16 left-[481px] top-[1207px] absolute bg-[#46ADAC] rounded-[40px] cursor-pointer"
-      >
-        <div className="w-96 h-8 left-[31px] top-[16px] absolute text-center justify-center text-white text-2xl font-bold font-['Open_Sans'] uppercase tracking-[3.60px]">
-          view payment status
+    <div className="min-h-screen bg-stone-50">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+        {/* Header */}
+        <div className="pt-8 md:pt-16 pb-6 md:pb-8 text-center">
+          <h1 className="text-[#B56868] text-lg md:text-2xl lg:text-3xl font-semibold uppercase">
+            Waiting for Payment
+          </h1>
         </div>
-      </button>
+
+        {/* Payment Details Card */}
+        <div className="mb-6 md:mb-8">
+          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8 max-w-4xl mx-auto">
+            <h2 className="text-center text-gray-800 text-base md:text-lg font-medium mb-6 md:mb-8 lowercase">
+              payment details
+            </h2>
+
+            <div className="space-y-6 md:space-y-8">
+              {/* Bank Logo Row */}
+              <div className="flex justify-start">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-orange-500 rounded-sm flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">⚡</span>
+                  </div>
+                  <span className="text-orange-500 text-xl md:text-2xl font-bold">
+                    {bank_code}
+                  </span>
+                </div>
+              </div>
+
+              {/* Virtual Account Row */}
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                <div className="text-gray-700 text-base md:text-lg font-medium">
+                  Nomor Virtual Account
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-gray-900 text-lg md:text-xl font-bold font-mono tracking-wider">
+                    {account_number}
+                  </span>
+                  <button
+                    onClick={() => copyToClipboard(account_number)}
+                    className="p-2 text-[#46ADAC] hover:bg-gray-50 rounded-lg transition-colors flex-shrink-0"
+                    title="Copy Virtual Account"
+                  >
+                    {/* copy icon */}
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+                      <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11.586l-3-3a1 1 0 00-1.414 1.414L11.586 11H15z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Total Bill Row */}
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                <div className="text-gray-700 text-base md:text-lg font-medium">
+                  total bill
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-gray-900 text-xl md:text-2xl font-bold">
+                    Rp{expected_amount.toLocaleString("id-ID")}
+                  </span>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        `Rp${expected_amount.toLocaleString("id-ID")}`
+                      )
+                    }
+                    className="p-2 text-[#46ADAC] hover:bg-gray-50 rounded-lg transition-colors flex-shrink-0"
+                    title="Copy Total Amount"
+                  >
+                    {/* copy icon */}
+                    <svg
+                      className="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+                      <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11.586l-3-3a1 1 0 00-1.414 1.414L11.586 11H15z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Copy Notification */}
+              {copied && (
+                <div className="mt-4 p-3 bg-green-50 text-green-700 text-sm text-center rounded-xl border border-green-200">
+                  Copied to clipboard!
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Instructions */}
+        <div className="flex flex-col pb-6 md:pb-8">
+          <div className="w-full">
+            <h2 className="text-[#B56868] text-base md:text-xl font-semibold mb-4 md:mb-6">
+              Payment Instructions
+            </h2>
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 space-y-8">
+              {/* ATM */}
+              <div>
+                <h3 className="text-gray-900 font-semibold text-lg mb-4">
+                  {bank_code} ATM
+                </h3>
+                <ol className="list-decimal list-inside text-gray-700 space-y-2">
+                  <li>Insert card & select language</li>
+                  <li>Enter PIN</li>
+                  <li>Menu &gt; Other &gt; Transfer</li>
+                  <li>Select account type</li>
+                  <li>Virtual Account Billing</li>
+                  <li>
+                    Enter VA number:{" "}
+                    <code className="font-mono bg-gray-100 px-1 rounded">
+                      {account_number}
+                    </code>
+                  </li>
+                  <li>Confirm details</li>
+                  <li>Complete transaction</li>
+                </ol>
+              </div>
+              {/* Mobile Banking */}
+              <div>
+                <h3 className="text-gray-900 font-semibold text-lg mb-4">
+                  {bank_code} Mobile Banking
+                </h3>
+                <ol className="list-decimal list-inside text-gray-700 space-y-2">
+                  <li>Open mobile app & login</li>
+                  <li>Transfer Virtual Account Billing</li>
+                  <li>
+                    Enter VA number:{" "}
+                    <code className="font-mono bg-gray-100 px-1 rounded">
+                      {account_number}
+                    </code>
+                  </li>
+                  <li>Review & confirm</li>
+                  <li>Complete payment</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          {/* View Status Button */}
+          <div className="sticky bottom-0 bg-white p-4">
+            <button
+              onClick={handleViewStatus}
+              className="w-full h-16 bg-[#46ADAC] text-white font-semibold rounded-full"
+            >
+              VIEW PAYMENT STATUS
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
