@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export function Explore1() {
   const shoes = [
@@ -23,135 +23,64 @@ export function Explore1() {
       image: "https://placehold.co/225x250",
       status: "PASS",
     },
-    {
-      name: "Yeezy 350 v2 zebra",
-      image: "https://placehold.co/225x250",
-      status: "NOT PASS",
-    },
-    {
-      name: "Adidas adizero prime x strung",
-      image: "https://placehold.co/225x250",
-      status: "NOT PASS",
-    },
-    {
-      name: "New Balance 530",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
-    {
-      name: "Converse Chuck Taylor All Star High",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
-    {
-      name: "Nike shoes Air Jordan 1s dark green",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
-    {
-      name: "Adidas Samba",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
-    {
-      name: "Reebok Club C 85",
-      image: "https://placehold.co/225x250",
-      status: "NOT PASS",
-    },
-    {
-      name: "Jordan 1 Low Travis Scott Reverse Mocha",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
-    {
-      name: "Asics Gel Kayano 14",
-      image: "https://placehold.co/225x250",
-      status: "PASS",
-    },
   ];
 
-  // Membatasi hanya menampilkan maksimal 4 sepatu
-  const displayedShoes = shoes.slice(0, 4);
-
   return (
-    <div className="w-full min-h-screen relative overflow-hidden">
-      {/* Tombol untuk eksplorasi */}
-      <Link to="/explore">
-        <button className="w-72 h-16 left-[143px] top-[630px] absolute bg-[#B56868] rounded-[40px] flex justify-center items-center">
-          <div className="w-50 h-6 text-center text-white text-lg font-bold font-open uppercase tracking-[2.70px] cursor-pointer">
-            ExploRe more
-          </div>
-        </button>
-      </Link>
-
-      {/* Icon Arrow */}
-      <div
-        data-svg-wrapper
-        data-icon-name="Arrow Right"
-        data-size="55px"
-        data-style="False"
-        className="left-[375px] top-[645px] absolute"
-      >
-        <svg
-          width="31"
-          height="35"
-          viewBox="0 0 31 35"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M28.3088 17.5V17.5C28.3049 17.6842 28.2745 17.8665 28.2187 18.0396C28.1889 18.1012 28.1545 18.1598 28.1158 18.2146C28.0821 18.2954 28.0434 18.3734 28 18.4479L20.2794 28.6563C19.9806 29.0522 19.518 29.2375 19.0661 29.1422C18.6141 29.0469 18.2413 28.6855 18.0881 28.1942C17.9349 27.703 18.0247 27.1564 18.3235 26.7604L24.2297 18.9584H3.86025C3.14959 18.9584 2.57349 18.3054 2.57349 17.5C2.57349 16.6946 3.14959 16.0417 3.86025 16.0417H24.2297L18.3235 8.23961C18.0247 7.84364 17.9349 7.29708 18.0881 6.8058C18.2413 6.31453 18.6141 5.95319 19.0661 5.85789C19.518 5.76259 19.9806 5.94781 20.2794 6.34377L28 16.5521C28.0434 16.6267 28.0821 16.7046 28.1158 16.7854C28.1545 16.8403 28.1889 16.8988 28.2187 16.9604C28.2745 17.1335 28.3049 17.3158 28.3088 17.5Z"
-            fill="white"
-          />
-        </svg>
+    <section className="w-full bg-white py-16 px-4 sm:px-8 md:px-16 lg:px-24 relative">
+      {/* Title */}
+      <div className="mb-10">
+        <h2 className="text-black text-4xl sm:text-5xl font-semibold font-poppins leading-tight">
+          Explore
+        </h2>
+        <h2 className="text-[#46ADAC] text-4xl sm:text-5xl font-semibold font-poppins leading-tight">
+          What WE Checked
+        </h2>
+        <p className="text-gray-700 text-lg sm:text-xl font-semibold font-open mt-2">
+          Discover every legit check we've completed by visiting 'Explore'.
+        </p>
       </div>
 
-      {/* Display Sepatu */}
-      <div className="flex flex-wrap justify-center gap-10 px-6 mt-50">
-        {displayedShoes.map((shoe, index) => (
+      {/* Shoes Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+        {shoes.map((shoe, index) => (
           <div
             key={index}
-            className="w-64 h-96 bg-white rounded-[20px] border border-zinc-300 flex flex-col items-start gap-4 p-4"
+            className="bg-white rounded-[20px] border border-zinc-300 flex flex-col items-start gap-4 p-4 shadow-sm"
           >
-            {/* Shoe Image */}
             <img
               src={shoe.image}
               alt={shoe.name}
-              className="w-[250px] h-[250px] object-cover"
+              className="w-full h-[250px] object-cover rounded-md"
             />
-            {/* Shoe Name */}
-            <div className="ext-xl font-semibold text-black text-ellipsis overflow-hidden">
+            <div className="text-xl font-semibold text-black truncate">
               {shoe.name}
             </div>
-            {/* Shoe Status */}
             <div className="flex justify-end w-full mt-auto">
               <div
-                className={`px-6 py-2 rounded-[20px] ${
+                className={`px-4 py-1 rounded-[20px] text-white text-sm font-bold font-open tracking-wide ${
                   shoe.status === "PASS" ? "bg-[#5CC98D]" : "bg-[#E06262]"
                 }`}
               >
-                <span className="text-[#FAFAFA] text-[20px] font-bold font-open tracking-[0.02em]">
-                  {shoe.status}
-                </span>
+                {shoe.status}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Title "Explore What WE Checked" */}
-      <div className="w-[467px] h-32 left-[143px] top-[-3px] absolute justify-center">
-        <span className="text-black text-5xl font-semibold font-['Poppins'] leading-[69.64px]">
-          Explore
-          <br />
-        </span>
-        <span className="text-[#46ADAC] text-5xl font-semibold font-['Poppins'] leading-[69.64px]">
-          What WE Checked
-        </span>
+      {/* Explore Button */}
+      <div className="flex justify-start mt-12">
+        <Link to="/explore">
+          <button className="bg-[#B56868] text-white uppercase tracking-[2px] font-bold font-open rounded-full px-10 py-4 flex items-center gap-2">
+            ExploRe more
+            <img
+              src="/icons/arrow-right.svg"
+              alt="Arrow Right"
+              className="w-5 h-5"
+            />
+          </button>
+        </Link>
       </div>
-      <div className="w-[619px] h-9 left-[144px] top-[127px] absolute justify-center text-gray-700 text-xl font-semibold font-['Open_Sans'] leading-7">
-        Discover every legit check we've completed by visiting 'Explore'.
-      </div>
-    </div>
+    </section>
   );
 }
