@@ -11,7 +11,6 @@ const { sendPaymentSuccessEmail } = require("./emailService");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ DB Config
 const dbConfig = {
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
@@ -19,12 +18,10 @@ const dbConfig = {
   database: process.env.DB_NAME || "checkmykicks",
 };
 
-// ✅ Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ Multer Upload Setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = path.join(__dirname, "uploads");
@@ -37,7 +34,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// ✅ Upload & Create Shoe Record
 app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   try {
@@ -60,19 +56,20 @@ app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
           ])
         )[0].insertId;
 
-    const [shoe] = await connection.execute(
+    const [shoeResult] = await connection.execute(
       `INSERT INTO shoes (user_id, image_url, status, result, created_at, email)
        VALUES (?, ?, 'waiting', NULL, NOW(), ?)`,
       [userId, imageNames, email]
     );
+    const shoeId = shoeResult.insertId;
 
     await connection.execute(
-      `INSERT INTO payments (shoe_id, user_id, status, paid_at)
-   VALUES (?, ?, 'unpaid', NULL)`,
-      [shoe.insertId, userId]
+      `INSERT INTO payments (shoe_id, status, paid_at, account_number, bank_code, amount, va_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [shoeId, "unpaid", null, null, null, 50000, null]
     );
 
-    res.json({ message: "Data berhasil disimpan!", shoe_id: shoe.insertId });
+    res.json({ message: "Data berhasil disimpan!", shoe_id: shoeId });
   } catch (err) {
     console.error("[ERROR CHECKNOW]", err);
     res.status(500).json({ error: "Gagal menyimpan data" });
@@ -81,7 +78,6 @@ app.post("/api/checknow", upload.array("photos", 8), async (req, res) => {
   }
 });
 
-// ✅ Create Virtual Account
 app.post("/api/create-va", async (req, res) => {
   const { bank_code, name, expected_amount, shoe_id } = req.body;
 
@@ -90,7 +86,6 @@ app.post("/api/create-va", async (req, res) => {
   }
 
   const connection = await mysql.createConnection(dbConfig);
-
   try {
     const response = await axios.post(
       "https://api.xendit.co/callback_virtual_accounts",
@@ -138,7 +133,6 @@ app.post("/api/create-va", async (req, res) => {
   }
 });
 
-// ✅ Manual Payment Simulation
 app.post("/api/manual-payment", async (req, res) => {
   const { account_number, amount } = req.body;
   const connection = await mysql.createConnection(dbConfig);
@@ -179,7 +173,6 @@ app.post("/api/manual-payment", async (req, res) => {
   }
 });
 
-// ✅ Cek Status Pembayaran
 app.get("/api/payment-status/:shoe_id", async (req, res) => {
   const { shoe_id } = req.params;
   const connection = await mysql.createConnection(dbConfig);
@@ -203,7 +196,6 @@ app.get("/api/payment-status/:shoe_id", async (req, res) => {
   }
 });
 
-// ✅ Test Email
 app.get("/test-email", async (req, res) => {
   try {
     await sendPaymentSuccessEmail("youremail@gmail.com", 999);
@@ -214,12 +206,10 @@ app.get("/test-email", async (req, res) => {
   }
 });
 
-// ✅ Server Test
 app.get("/test", (req, res) => {
   res.send("Server jalan!");
 });
 
-// ✅ Start Server
 app.listen(PORT, () => {
   console.log(`✅ Server jalan di http://localhost:${PORT}`);
 });

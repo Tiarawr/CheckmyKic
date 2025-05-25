@@ -28,6 +28,8 @@ export default function Payment() {
       const name = "John Doe";
       const expected_amount = 50000;
 
+      console.log({ bank_code, name, expected_amount, shoe_id });
+
       try {
         const res = await fetch("/api/create-va", {
           method: "POST",

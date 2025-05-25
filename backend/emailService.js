@@ -21,9 +21,8 @@ async function sendPaymentSuccessEmail(toEmail, shoeId) {
         </head>
         <body style="margin: 0; padding: 40px 0; background-color: #f4f4f5; font-family: 'Poppins', sans-serif;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="vector-50.svg" style="height: 50px;" alt="CheckMyKicks Logo"/>
-          </div>
-
+<img src="cid:checkmykicks-logo" style="height: 50px;" alt="CheckMyKicks Logo"/>
+      </div>
           <div style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px;">
             <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #222;">
               Pembayaran <span style="color: #888;">Berhasil</span>
@@ -44,6 +43,13 @@ async function sendPaymentSuccessEmail(toEmail, shoeId) {
         </body>
       </html>
     `,
+    attachments: [
+      {
+        filename: "vector-50.svg",
+        path: path.join(__dirname, "assets", "vector-50.svg"),
+        cid: "checkmykicks-logo",
+      },
+    ],
   };
 
   return transporter.sendMail(mailOptions);

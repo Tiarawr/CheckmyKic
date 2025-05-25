@@ -46,11 +46,18 @@ export default function CheckNow() {
         body: formData,
       });
       if (!response.ok) throw new Error("Submit failed");
+
+      const responseData = await response.json();
       setBrands("");
       setModel("");
       setEmail("");
       setPhotos([]);
-      navigate("/payment");
+
+      navigate("/payment", {
+        state: {
+          shoe_id: responseData.shoe_id,
+        },
+      });
     } catch (error) {
       alert("Gagal mengirim data: " + error.message);
     } finally {
