@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:3000",
     },
-    allowedHosts: ["9d9f-157-10-8-222.ngrok-free.app"], // ganti sesuai host ngrok kamu
-    host: true, // penting agar Vite menerima external request
+    allowedHosts: ["bfad-157-10-8-222.ngrok-free.app"],
+    host: true,
   },
 });

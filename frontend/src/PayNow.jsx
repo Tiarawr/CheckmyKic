@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Paynow() {
   const { state } = useLocation();
+
   const {
     account_number = "123456789101112",
     expected_amount = 50000,

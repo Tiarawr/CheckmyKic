@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Payment() {
   const [selected, setSelected] = useState("");
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+  const { shoe_id } = state || {};
 
   const handlePay = async () => {
     if (!selected) {
@@ -28,7 +32,7 @@ export default function Payment() {
         const res = await fetch("/api/create-va", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ bank_code, name, expected_amount }),
+          body: JSON.stringify({ bank_code, name, expected_amount, shoe_id }),
         });
 
         const vaData = await res.json();

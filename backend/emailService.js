@@ -21,7 +21,7 @@ async function sendPaymentSuccessEmail(toEmail, shoeId) {
         </head>
         <body style="margin: 0; padding: 40px 0; background-color: #f4f4f5; font-family: 'Poppins', sans-serif;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="cid:logo" style="height: 50px;" alt="CheckMyKicks Logo"/>
+            <img src="vector-50.svg" style="height: 50px;" alt="CheckMyKicks Logo"/>
           </div>
 
           <div style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px;">
