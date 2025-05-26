@@ -14,11 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const dbConfig = {
-  host: process.env.MYSQLHOST,
-  port: process.env.MYSQLPORT || 3306,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
+  host: process.env.DB_HOST,
+  port: process.env.MYSQL_PORT || 3306, // Railway MySQL port
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
 app.use(cors());
@@ -453,8 +453,3 @@ app.listen(PORT, () => {
   console.log(`✅ Server listening on port ${PORT}`);
 });
 
-// kesehatan basic endpoint
-app.get("/", (req, res) => res.send("OK"));
-
-// opsional: ping /api
-app.get("/api", (req, res) => res.json({ message: "API up!" }));
