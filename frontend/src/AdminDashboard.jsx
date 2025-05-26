@@ -150,10 +150,13 @@ export default function AdminDashboard() {
 
     try {
       // Kirim update result ke backend
-      await axios.post(`${import.meta.env.VITE_API_URL}/admin/update-result`, {
-        shoe_id: selectedOrder.shoe_id,
-        result: resultStatus, // ini bisa "not pass"
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/admin/update-result`,
+        {
+          shoe_id: selectedOrder.shoe_id,
+          result: resultStatus, // ini bisa "not pass"
+        }
+      );
 
       // Update lokal state
       setOrders((prevOrders) =>
