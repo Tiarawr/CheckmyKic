@@ -448,3 +448,7 @@ app.get("/test-email", async (req, res) => {
 app.get("/test", (req, res) => {
   res.send("Server jalan!");
 });
+
+app.listen(PORT, () => {
+  console.log(`✅ Server listening on port ${PORT}`);
+});
