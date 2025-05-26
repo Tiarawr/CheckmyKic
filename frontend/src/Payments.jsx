@@ -84,17 +84,20 @@ export default function Payment() {
       });
 
       try {
-        const res = await fetch("/api/create-va", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            bank_code,
-            name,
-            expected_amount,
-            // ensure shoe_id is a number if your DB expects it:
-            shoe_id: Number(shoe_id),
-          }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/create-va`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              bank_code,
+              name,
+              expected_amount,
+              // ensure shoe_id is a number if your DB expects it:
+              shoe_id: Number(shoe_id),
+            }),
+          }
+        );
 
         console.log("Response status:", res.status);
         console.log("Response headers:", res.headers);

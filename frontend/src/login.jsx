@@ -19,7 +19,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        "https://9213-157-10-8-222.ngrok-free.app/api/admin/login",
+        `${import.meta.env.VITE_API_URL}/api/admin/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
