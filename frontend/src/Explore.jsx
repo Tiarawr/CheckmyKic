@@ -27,8 +27,6 @@ export default function Explore() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentShoes = shoes.slice(startIndex, endIndex);
-  const IMAGE_BASE_URL = "https://751c-157-10-8-222.ngrok-free.app"; //port 3000
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
@@ -111,7 +109,7 @@ export default function Explore() {
                 {/* Shoe Image */}
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src={`${IMAGE_BASE_URL}${shoe.image.replace(
+                    src={`${import.meta.env.VITE_API_URL}${shoe.image.replace(
                       "/uploads//uploads",
                       "/uploads"
                     )}`}
