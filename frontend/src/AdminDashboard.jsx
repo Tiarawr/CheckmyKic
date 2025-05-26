@@ -12,10 +12,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-// Real axios configuration - you'll need to replace with your actual backend URL
-const API_BASE_URL = "https://9213-157-10-8-222.ngrok-free.app/api"; //port 5176
-const IMAGE_BASE_URL = "https://751c-157-10-8-222.ngrok-free.app"; //port 3000
-
 const axios = {
   get: async (url) => {
     try {
@@ -77,12 +73,12 @@ export default function AdminDashboard() {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        `${API_BASE_URL}/admin/orders-with-shoes`
+        "https://sincere-rebirth-am.up.railway.app//admin/orders-with-shoes"
       );
 
       const ordersWithParsedImages = response.data.map((order) => ({
         ...order,
-        // Parse image_url if it's stored as JSON string
+
         image_url: order.image_url
           ? typeof order.image_url === "string"
             ? JSON.parse(order.image_url)
@@ -154,10 +150,13 @@ export default function AdminDashboard() {
 
     try {
       // Kirim update result ke backend
-      await axios.post(`${API_BASE_URL}/admin/update-result`, {
-        shoe_id: selectedOrder.shoe_id,
-        result: resultStatus, // ini bisa "not pass"
-      });
+      await axios.post(
+        "https://sincere-rebirth-am.up.railway.app//admin/update-result",
+        {
+          shoe_id: selectedOrder.shoe_id,
+          result: resultStatus, // ini bisa "not pass"
+        }
+      );
 
       // Update lokal state
       setOrders((prevOrders) =>
@@ -209,10 +208,13 @@ export default function AdminDashboard() {
   const confirmSendCertificate = async () => {
     try {
       // Send certificate via your API
-      await axios.post(`${API_BASE_URL}/admin/send-certificate`, {
-        orderId: certificateData.orderId,
-        certificateData: certificateData,
-      });
+      await axios.post(
+        "https://sincere-rebirth-am.up.railway.app//admin/send-certificate",
+        {
+          orderId: certificateData.orderId,
+          certificateData: certificateData,
+        }
+      );
 
       alert(
         `✅ Certificate sent successfully to ${certificateData.customerEmail}!`
@@ -245,10 +247,13 @@ export default function AdminDashboard() {
     };
 
     try {
-      await axios.post(`${API_BASE_URL}/admin/send-certificate`, {
-        orderId: certData.orderId,
-        certificateData: certData,
-      });
+      await axios.post(
+        "https://sincere-rebirth-am.up.railway.app/admin/send-certificate",
+        {
+          orderId: certData.orderId,
+          certificateData: certData,
+        }
+      );
 
       alert(`✅ Certificate auto-sent to ${certData.customerEmail}!`);
     } catch (err) {
@@ -529,7 +534,10 @@ export default function AdminDashboard() {
                     {selectedOrder.image_url &&
                     selectedOrder.image_url.length > 0 ? (
                       selectedOrder.image_url.slice(0, 8).map((img, index) => {
-                        console.log("IMAGE URL:", `${IMAGE_BASE_URL}${img}`);
+                        console.log(
+                          "IMAGE URL:",
+                          `https://sincere-rebirth-am.up.railway.app${img}`
+                        );
 
                         return (
                           <div
@@ -537,16 +545,17 @@ export default function AdminDashboard() {
                             className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
                             onClick={() =>
                               handleImageClick(
-                                `${IMAGE_BASE_URL}${img}`,
+                                `https://sincere-rebirth-am.up.railway.app${img}`,
                                 index,
                                 selectedOrder.image_url.map(
-                                  (imgUrl) => `${IMAGE_BASE_URL}${imgUrl}`
+                                  (imgUrl) =>
+                                    `https://sincere-rebirth-am.up.railway.app${imgUrl}`
                                 )
                               )
                             }
                           >
                             <img
-                              src={`${IMAGE_BASE_URL}${img}`}
+                              src={`https://sincere-rebirth-am.up.railway.app${img}`}
                               alt={`Customer image ${index + 1}`}
                               className="w-full h-full object-cover"
                               onError={(e) => {

@@ -10,7 +10,7 @@ export default function Explore() {
     const fetchShoes = async () => {
       try {
         const response = await fetch(
-          "https://9213-157-10-8-222.ngrok-free.app/api/shoes"
+          "https://sincere-rebirth-am.up.railway.app/api/shoes"
         ); //port front
         const data = await response.json();
         setShoes(data);

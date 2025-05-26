@@ -89,10 +89,13 @@ export default function CheckNow() {
     photos.forEach((photo) => formData.append("photos", photo));
 
     try {
-      const response = await fetch("/api/checknow", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://sincere-rebirth-am.up.railway.app/api/checknow",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (!response.ok) throw new Error("Submit failed");
 
       const responseData = await response.json();
