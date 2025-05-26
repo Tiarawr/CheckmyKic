@@ -73,7 +73,7 @@ export default function AdminDashboard() {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        fetch(`${import.meta.env.VITE_API_URL}/api/admin/orders-with-shoes`)
+        `${import.meta.env.VITE_API_URL}/api/admin/orders-with-shoes`
       );
 
       const ordersWithParsedImages = response.data.map((order) => ({
