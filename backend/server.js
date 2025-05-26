@@ -452,3 +452,9 @@ app.get("/test", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server listening on port ${PORT}`);
 });
+
+// kesehatan basic endpoint
+app.get("/", (req, res) => res.send("OK"));
+
+// opsional: ping /api
+app.get("/api", (req, res) => res.json({ message: "API up!" }));
