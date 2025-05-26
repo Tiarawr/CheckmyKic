@@ -27,12 +27,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// DB Config
 const dbConfig = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "checkmykicks",
+  host: process.env.DB_HOST,
+  port: process.env.MYSQL_PORT || 3306, // Railway MySQL port
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
 // Root

@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
 
-// DB config
 const dbConfig = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "checkmykicks",
+  host: process.env.DB_HOST,
+  port: process.env.MYSQL_PORT || 3306,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
 // Simulasi pembayaran manual

@@ -14,10 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const dbConfig = {
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "checkmykicks",
+  host: process.env.DB_HOST,
+  port: process.env.MYSQL_PORT || 3306, // Railway MySQL port
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
 app.use(cors());
@@ -446,8 +447,4 @@ app.get("/test-email", async (req, res) => {
 
 app.get("/test", (req, res) => {
   res.send("Server jalan!");
-});
-
-app.listen(PORT, () => {
-  console.log(`✅ Server jalan di http://localhost:${PORT}`);
 });
