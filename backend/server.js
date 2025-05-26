@@ -14,11 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const dbConfig = {
-  host: process.env.DB_HOST,
-  port: process.env.MYSQL_PORT || 3306, // Railway MySQL port
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.MYSQLHOST,
+  port: process.env.MYSQLPORT || 3306,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
 };
 
 app.use(cors());
