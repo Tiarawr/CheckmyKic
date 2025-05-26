@@ -209,7 +209,7 @@ export default function AdminDashboard() {
     try {
       // Send certificate via your API
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/admin/send-certificate`,
+        `${import.meta.env.VITE_API_URL}/api/admin/send-certificate`,
         {
           orderId: certificateData.orderId,
           certificateData: certificateData,
@@ -248,7 +248,7 @@ export default function AdminDashboard() {
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/admin/send-certificate`,
+        `${import.meta.env.VITE_API_URL}/api/admin/send-certificate`,
         {
           orderId: certData.orderId,
           certificateData: certData,
