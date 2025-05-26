@@ -1,5 +1,6 @@
 import React from "react";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ReviewCard = ({ initials, rating, review, maxStars = 5 }) => {
   const renderStars = () => {
@@ -84,29 +85,36 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <div className="w-full bg-gray-50 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-semibold font-['Poppins'] text-emerald-400 leading-tight">
-            Reviews
-          </h2>
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      <div className="w-full bg-white py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-6xl font-semibold font-['Poppins'] text-[#46ADAC] leading-tight">
+              Reviews
+            </h2>
+          </div>
 
-        {/* Reviews Grid - Masonry Style Layout */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {reviews.map((review, index) => (
-            <div key={index} className="break-inside-avoid mb-6">
-              <ReviewCard
-                initials={review.initials}
-                rating={review.rating}
-                review={review.review}
-              />
-            </div>
-          ))}
+          {/* Reviews Grid - Masonry Style Layout */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {reviews.map((review, index) => (
+              <div key={index} className="break-inside-avoid mb-6">
+                <ReviewCard
+                  initials={review.initials}
+                  rating={review.rating}
+                  review={review.review}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { motion } from "framer-motion";
 
 export function Explore1() {
   const shoes = [
     {
       name: "Air Jordan 4 Military Black",
-      image: "https://placehold.co/225x250",
+      image: "jordan.png",
       status: "PASS",
     },
     {
       name: "Yeezy 350 v2 zebra",
-      image: "https://placehold.co/225x250",
+      image: "yezzy.png",
       status: "NOT PASS",
     },
     {
       name: "Adidas Gazelle",
-      image: "https://placehold.co/225x250",
+      image: "gazelle.png",
       status: "PASS",
     },
     {
       name: "New Balance 550",
-      image: "https://placehold.co/225x250",
+      image: "nb.png",
       status: "PASS",
     },
   ];
@@ -74,7 +75,7 @@ export function Explore1() {
           <button className="bg-[#B56868] text-white uppercase tracking-[2px] font-bold font-open rounded-full px-10 py-4 flex items-center gap-2">
             ExploRe more
             <img
-              src="/icons/arrow-right.svg"
+              src="Iconography - Caesarzkn.svg"
               alt="Arrow Right"
               className="w-5 h-5"
             />

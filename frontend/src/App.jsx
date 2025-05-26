@@ -13,12 +13,21 @@ import CheckNow from "./CheckNow";
 import Payment from "./Payments";
 import Paynow from "./PayNow";
 import PaymentStatus from "./PaymentStatus";
+import AdminDashboard from "./AdminDashboard";
+import Login from "./login";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const location = useLocation();
 
   // List route tanpa header
-  const noHeaderRoutes = ["/payment", "/paynow", "/payment-status"];
+  const noHeaderRoutes = [
+    "/payment",
+    "/paynow",
+    "/payment-status",
+    "/admin",
+    "/login-admin",
+  ];
   const hideHeader = noHeaderRoutes.includes(location.pathname);
 
   return (
@@ -53,6 +62,8 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paynow" element={<Paynow />} />
         <Route path="/payment-status" element={<PaymentStatus />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/login-admin" element={<Login />} />
       </Routes>
     </>
   );

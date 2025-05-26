@@ -90,6 +90,22 @@ app.get("/test", (req, res) => {
   res.send("Server jalan!");
 });
 
+// GET /api/admin/shoes - get all shoes with status and result
+app.get("/api/admin/shoes", async (req, res) => {
+  const connection = await mysql.createConnection(dbConfig);
+  try {
+    const [shoes] = await connection.execute(
+      `SELECT id, user_id, image_url, status, result, created_at, email FROM shoes ORDER BY created_at DESC`
+    );
+    res.json(shoes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch shoes" });
+  } finally {
+    await connection.end();
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server jalan di http://localhost:${PORT}`);
 });

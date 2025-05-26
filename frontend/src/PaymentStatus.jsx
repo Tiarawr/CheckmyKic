@@ -7,53 +7,59 @@ export default function PaymentStatus() {
   const [status, setStatus] = useState("checking");
 
   useEffect(() => {
-    const checkStatus = async () => {
+    const checkPaymentStatus = async () => {
       try {
-        const res = await fetch(`/api/payment-status/${shoe_id}`);
+        const res = await fetch(
+          `http://localhost:3000/api/payment-status/${shoe_id}`
+        );
         const data = await res.json();
-        if (data.status === "paid") {
-          setStatus("paid");
-        } else {
-          setStatus("unpaid");
-        }
+        setStatus(data.status);
       } catch (err) {
-        console.error("Failed to fetch status:", err);
+        console.error("Failed to fetch payment status:", err);
         setStatus("error");
       }
     };
 
-    if (shoe_id) checkStatus();
+    if (shoe_id) checkPaymentStatus();
   }, [shoe_id]);
 
-  if (status === "paid") {
-    return (
-      <div className="w-full h-[904px] relative bg-gradient-to-b from-[#5CC98D] to-slate-300">
-        <div className="w-[485px] h-10 left-[478px] top-[287px] absolute justify-center text-white text-5xl font-semibold font-['Poppins'] uppercase leading-[69.64px]">
-          PAYMENT SUCCESS
-        </div>
-        <img
-          className="size-56 left-[606px] top-[388px] absolute"
-          src="icon PS 1.svg"
-          alt="Success"
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-full h-[904px] relative bg-gradient-to-b from-[#B56868] to-white">
-      <div className="w-[552px] h-10 left-[444px] top-[251px] absolute justify-center text-white text-5xl font-semibold font-['Poppins'] uppercase leading-[69.64px]">
-        WAITING FOR RESULTS
-      </div>
-      <div className="w-[704px] h-10 left-[368px] top-[612px] absolute text-center justify-center text-gray-700 text-xl font-semibold font-['Poppins'] uppercase leading-7">
-        "We are currently verifying the authenticity of your sneakers. The
-        complete results will be sent to your email shortly."
-      </div>
+  const paidUI = (
+    <div className="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-[#5CC98D] to-slate-300 px-4">
+      <h1 className="text-white text-3xl md:text-5xl font-semibold uppercase mb-6">
+        Payment Success
+      </h1>
       <img
-        className="size-56 left-[605px] top-[342px] absolute"
-        src="waiting-list 1.svg"
-        alt="Waiting"
+        src="/icon PS 1.svg"
+        alt="Success"
+        className="w-32 h-32 md:w-56 md:h-56"
       />
     </div>
   );
+
+  const waitingUI = (
+    <div className="min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-[#B56868] to-white px-4">
+      <h1 className="text-white text-3xl md:text-5xl font-semibold uppercase mb-6">
+        Waiting for Payment
+      </h1>
+      <img
+        src="/waiting-list 1.svg"
+        alt="Waiting"
+        className="w-32 h-32 md:w-56 md:h-56 mb-4"
+      />
+      <p className="text-gray-700 text-lg md:text-xl font-semibold max-w-xl">
+        "We are currently verifying the authenticity of your sneakers. The
+        complete results will be sent to your email shortly."
+      </p>
+    </div>
+  );
+
+  const loadingUI = (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-200 to-white px-4">
+      <p className="text-gray-500 text-xl">Loading status...</p>
+    </div>
+  );
+
+  if (status === "paid") return paidUI;
+  if (status === "unpaid" || status === "waiting") return waitingUI;
+  return loadingUI;
 }

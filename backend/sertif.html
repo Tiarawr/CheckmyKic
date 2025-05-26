@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate of Authenticity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media print {
+        body {
+          margin: 0;
+        }
+        .no-print {
+          display: none;
+        }
+      }
+      @page {
+        size: A4 landscape;
+        margin: 0.5in;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 p-4">
+    <div class="p-8">
+      <div
+        class="bg-white border-2 border-gray-200 rounded-lg p-8 max-w-3xl mx-auto"
+        style="aspect-ratio: 4/3"
+      >
+        <div class="text-center pb-6">
+          <div class="flex items-center justify-center gap-4 mb-4">
+            <div>
+              <h1 class="text-3xl font-bold text-gray-800 tracking-wide">
+                CERTIFICATE OF AUTHENTICITY
+              </h1>
+              <p class="text-base text-gray-600 mt-1 ">Issued by CheckMyKicks</p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Item Name -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-1">
+                ITEM NAME
+              </h3>
+              <p class="text-base text-gray-800">
+                ${itemName} (Code: ${productId})
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-1">
+                CERTIFICATE OWNER
+              </h3>
+              <p class="text-base text-gray-800">
+                ${customerEmail} – ${issueDate}
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-1">DETAILS</h3>
+              <div class="text-sm text-gray-700 leading-relaxed">
+                <p class="mb-2">
+                  This item has been carefully inspected by our legit check
+                  team. Based on materials, stitching, tags, and overall shape,
+                  the item is deemed authentic.
+                </p>
+                <p>
+                  Thank you for using CheckMyKicks. This certificate is
+                  digitally issued and valid for reference in authenticity
+                  claims.
+                </p>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200">
+              <p class="text-xs text-gray-600 italic">
+                Note: Please do not edit or screenshot this document for other
+                purposes. Valid certificates are only issued by
+                CheckMyKicks.com.
+              </p>
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <div class="text-right">
+                <div class="w-24 h-8 border-b-2 border-gray-800 mb-1"></div>
+                <p class="text-xs text-gray-600">Authorized Signature</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

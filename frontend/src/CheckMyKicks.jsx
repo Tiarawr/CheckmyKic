@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const CheckMyKicks = () => {
   const steps = [
@@ -45,9 +46,9 @@ const CheckMyKicks = () => {
               />
             </svg>
           </div>
-          <button className="w-full bg-[#46ADAC] text-white py-2 px-4 rounded-lg font-semibold">
+          <div className="w-full bg-[#46ADAC] text-white py-2 px-4 rounded-lg font-semibold text-center">
             Upload Photo
-          </button>
+          </div>
         </div>
       ),
     },
@@ -66,9 +67,9 @@ const CheckMyKicks = () => {
               <div className="h-4 bg-gray-300 rounded flex-1"></div>
             </div>
           </div>
-          <button className="w-24 bg-[#46ADAC] text-white py-2 px-4 rounded-lg font-semibold mx-auto block">
+          <div className="w-24 bg-[#46ADAC] text-white py-2 px-4 rounded-lg font-semibold mx-auto text-center">
             Pay
-          </button>
+          </div>
         </div>
       ),
     },
@@ -221,61 +222,72 @@ const CheckMyKicks = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-[#B56868] py-8 px-4 md:py-16 md:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center md:text-left mb-12 md:mb-16">
-          <h1 className="text-white text-3xl md:text-6xl font-semibold font-['Poppins'] leading-tight">
-            How CheckMyKicks
-            <br />
-            Works?
-          </h1>
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      <div className="w-full min-h-screen bg-[#B56868] py-8 px-4 md:py-16 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center md:text-left mb-12 md:mb-16">
+            <h1 className="text-white text-3xl md:text-6xl font-semibold font-['Poppins'] leading-tight">
+              How CheckMyKicks
+              <br />
+              Works?
+            </h1>
+          </div>
 
-        {/* Steps */}
-        <div className="space-y-12 md:space-y-16">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8"
-            >
-              {/* Left side - Content */}
-              <div className="flex-1 lg:max-w-md">
-                <div className="flex items-start gap-4 mb-6">
-                  {/* Step number */}
-                  <div className="flex-shrink-0 w-14 h-16 flex items-center justify-center">
-                    <span className="text-white text-6xl md:text-7xl font-bold font-['Open_Sans']">
-                      {step.number}
-                    </span>
+          {/* Steps */}
+          <div className="relative">
+            {/* Continuous vertical line */}
+            <div className="hidden lg:block absolute left-1/2 top-4 bottom-0 w-px bg-white transform -translate-x-1/2"></div>
+
+            <div className="space-y-12 md:space-y-16">
+              {steps.map((step, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col lg:flex-row items-start gap-6 lg:gap-12 relative"
+                >
+                  {/* Left side - Content */}
+                  <div className="flex-1">
+                    <div className="flex items-start gap-4 mb-6">
+                      {/* Step number */}
+                      <div className="flex-shrink-0 w-14 h-16 flex items-center justify-center">
+                        <span className="text-white text-6xl md:text-7xl font-bold font-['Open_Sans']">
+                          {step.number}
+                        </span>
+                      </div>
+
+                      {/* Step content */}
+                      <div className="flex-1">
+                        <h3 className="text-white text-2xl md:text-4xl font-semibold font-['Poppins'] mb-4">
+                          {step.title}
+                        </h3>
+                        <p className="text-white text-lg md:text-xl font-normal font-['Open_Sans'] leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Step content */}
-                  <div className="flex-1">
-                    <h3 className="text-white text-2xl md:text-4xl font-semibold font-['Poppins'] mb-4">
-                      {step.title}
-                    </h3>
-                    <p className="text-white text-lg md:text-xl font-normal font-['Open_Sans'] leading-relaxed">
-                      {step.description}
-                    </p>
+                  {/* Connection dot */}
+                  <div className="hidden lg:flex flex-col items-center flex-shrink-0 relative z-10">
+                    <div className="w-8 h-8 bg-white rounded-full flex-shrink-0"></div>
+                  </div>
+
+                  {/* Right side - Mockup */}
+                  <div className="flex-1 flex justify-end lg:justify-end">
+                    <div className="w-full max-w-sm">{step.mockup}</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Connection line and dot */}
-              <div className="hidden lg:flex flex-col items-center flex-shrink-0 mx-4">
-                <div className="w-8 h-8 bg-white rounded-full flex-shrink-0"></div>
-                {index < steps.length - 1 && (
-                  <div className="w-px h-24 bg-white mt-2"></div>
-                )}
-              </div>
-
-              {/* Right side - Mockup */}
-              <div className="flex-1 lg:max-w-sm">{step.mockup}</div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
