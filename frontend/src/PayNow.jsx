@@ -68,9 +68,7 @@ export default function Paynow() {
   const { account_number, expected_amount, bank_code, shoe_id } = state;
 
   useEffect(() => {
-    fetch(
-      `https://sincere-rebirth-am.up.railway.app/api/payment-status/${shoe_id}`
-    )
+    fetch(`${import.meta.env.VITE_API_URL}/api/payment-status/${shoe_id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "paid") {

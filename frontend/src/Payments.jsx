@@ -85,7 +85,7 @@ export default function Payment() {
 
       try {
         const res = await fetch(
-          "https://sincere-rebirth-am.up.railway.app/api/create-va",
+          `${import.meta.env.VITE_API_URL}/api/create-va`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

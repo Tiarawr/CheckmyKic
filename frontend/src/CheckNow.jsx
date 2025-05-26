@@ -90,7 +90,7 @@ export default function CheckNow() {
 
     try {
       const response = await fetch(
-        "https://sincere-rebirth-am.up.railway.app/api/checknow",
+        `${import.meta.env.VITE_API_URL}/api/checknow`,
         {
           method: "POST",
           body: formData,

@@ -19,7 +19,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        "https://sincere-rebirth-am.up.railway.app/api/admin/login",
+        `${import.meta.env.VITE_API_URL}/api/admin/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

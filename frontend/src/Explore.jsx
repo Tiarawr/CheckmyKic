@@ -10,7 +10,7 @@ export default function Explore() {
     const fetchShoes = async () => {
       try {
         const response = await fetch(
-          "https://sincere-rebirth-am.up.railway.app/api/shoes"
+          `${import.meta.env.VITE_API_URL}/api/shoes`
         ); //port front
         const data = await response.json();
         setShoes(data);

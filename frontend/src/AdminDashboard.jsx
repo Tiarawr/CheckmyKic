@@ -73,7 +73,7 @@ export default function AdminDashboard() {
       setLoading(true);
       setError(null);
       const response = await axios.get(
-        "https://sincere-rebirth-am.up.railway.app//admin/orders-with-shoes"
+        `${import.meta.env.VITE_API_URL}/admin/orders-with-shoes`
       );
 
       const ordersWithParsedImages = response.data.map((order) => ({
@@ -150,13 +150,10 @@ export default function AdminDashboard() {
 
     try {
       // Kirim update result ke backend
-      await axios.post(
-        "https://sincere-rebirth-am.up.railway.app//admin/update-result",
-        {
-          shoe_id: selectedOrder.shoe_id,
-          result: resultStatus, // ini bisa "not pass"
-        }
-      );
+      await axios.post(`${import.meta.env.VITE_API_URL}/admin/update-result`, {
+        shoe_id: selectedOrder.shoe_id,
+        result: resultStatus, // ini bisa "not pass"
+      });
 
       // Update lokal state
       setOrders((prevOrders) =>
@@ -209,7 +206,7 @@ export default function AdminDashboard() {
     try {
       // Send certificate via your API
       await axios.post(
-        "https://sincere-rebirth-am.up.railway.app//admin/send-certificate",
+        `${import.meta.env.VITE_API_URL}/admin/send-certificate`,
         {
           orderId: certificateData.orderId,
           certificateData: certificateData,
@@ -248,7 +245,7 @@ export default function AdminDashboard() {
 
     try {
       await axios.post(
-        "https://sincere-rebirth-am.up.railway.app/admin/send-certificate",
+        `${import.meta.env.VITE_API_URL}/admin/send-certificate`,
         {
           orderId: certData.orderId,
           certificateData: certData,
@@ -536,7 +533,7 @@ export default function AdminDashboard() {
                       selectedOrder.image_url.slice(0, 8).map((img, index) => {
                         console.log(
                           "IMAGE URL:",
-                          `https://sincere-rebirth-am.up.railway.app${img}`
+                          `${import.meta.env.VITE_API_URL}${img}`
                         );
 
                         return (
@@ -545,17 +542,17 @@ export default function AdminDashboard() {
                             className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
                             onClick={() =>
                               handleImageClick(
-                                `https://sincere-rebirth-am.up.railway.app${img}`,
+                                `${import.meta.env.VITE_API_URL}${img}`,
                                 index,
                                 selectedOrder.image_url.map(
                                   (imgUrl) =>
-                                    `https://sincere-rebirth-am.up.railway.app${imgUrl}`
+                                    `${import.meta.env.VITE_API_URL}${imgUrl}`
                                 )
                               )
                             }
                           >
                             <img
-                              src={`https://sincere-rebirth-am.up.railway.app${img}`}
+                              src={`${import.meta.env.VITE_API_URL}${img}`}
                               alt={`Customer image ${index + 1}`}
                               className="w-full h-full object-cover"
                               onError={(e) => {
