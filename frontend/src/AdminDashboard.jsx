@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
-import { X, ChevronDown, Mail, FileText, Check } from "lucide-react";
+import {
+  X,
+  ChevronDown,
+  Mail,
+  FileText,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 // Real axios configuration - you'll need to replace with your actual backend URL
-const API_BASE_URL = "https://16f1-157-10-8-222.ngrok-free.app/api"; // Replace with your actual API URL
+const API_BASE_URL = "https://9213-157-10-8-222.ngrok-free.app/api"; //port 5176
+const IMAGE_BASE_URL = "https://751c-157-10-8-222.ngrok-free.app"; //port 3000
 
 const axios = {
   get: async (url) => {
@@ -49,6 +59,9 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem("adminToken");
@@ -87,6 +100,46 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageClick = (url, index, allImages) => {
+    setSelectedImage({ url, allImages });
+    setCurrentImageIndex(index);
+    setShowImageModal(true);
+  };
+
+  const closeImageModal = () => {
+    setShowImageModal(false);
+    setSelectedImage(null);
+    setCurrentImageIndex(0);
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev > 0 ? prev - 1 : selectedImage.allImages.length - 1
+    );
+    setSelectedImage((prev) => ({
+      ...prev,
+      url: selectedImage.allImages[
+        currentImageIndex > 0
+          ? currentImageIndex - 1
+          : selectedImage.allImages.length - 1
+      ],
+    }));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev < selectedImage.allImages.length - 1 ? prev + 1 : 0
+    );
+    setSelectedImage((prev) => ({
+      ...prev,
+      url: selectedImage.allImages[
+        currentImageIndex < selectedImage.allImages.length - 1
+          ? currentImageIndex + 1
+          : 0
+      ],
+    }));
   };
 
   const handleShowInfo = (order) => {
@@ -470,30 +523,43 @@ export default function AdminDashboard() {
                 {/* Images Section */}
                 <div className="mb-6">
                   <h4 className="text-base font-medium text-gray-900 dark:text-white mb-3">
-                    Customer Images
+                    Customer Images (Click to enlarge)
                   </h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {selectedOrder.image_url &&
                     selectedOrder.image_url.length > 0 ? (
-                      selectedOrder.image_url.slice(0, 8).map((img, index) => (
-                        <div
-                          key={index}
-                          className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden"
-                        >
-                          <img
-                            src={`http://localhost:3000${img}`}
-                            alt={`Customer image ${index + 1}`}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.style.display = "none";
-                              e.target.nextSibling.style.display = "flex";
-                            }}
-                          />
-                          <div className="w-full h-full hidden items-center justify-center text-gray-500 text-sm">
-                            Image not found
+                      selectedOrder.image_url.slice(0, 8).map((img, index) => {
+                        console.log("IMAGE URL:", `${IMAGE_BASE_URL}${img}`);
+
+                        return (
+                          <div
+                            key={index}
+                            className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
+                            onClick={() =>
+                              handleImageClick(
+                                `${IMAGE_BASE_URL}${img}`,
+                                index,
+                                selectedOrder.image_url.map(
+                                  (imgUrl) => `${IMAGE_BASE_URL}${imgUrl}`
+                                )
+                              )
+                            }
+                          >
+                            <img
+                              src={`${IMAGE_BASE_URL}${img}`}
+                              alt={`Customer image ${index + 1}`}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.target.style.display = "none";
+                                e.target.nextSibling.style.display = "flex";
+                              }}
+                            />
+                            <div className="w-full h-full hidden items-center justify-center text-gray-500 text-sm">
+                              Image not found
+                            </div>
                           </div>
-                        </div>
-                      ))
+                        );
+                      })
                     ) : (
                       <div className="col-span-4 text-gray-500 text-sm text-center py-4">
                         No images available
@@ -549,6 +615,60 @@ export default function AdminDashboard() {
                     Send Not Pass
                   </button>
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Image Enlargement Modal */}
+        {showImageModal && selectedImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-[60]">
+            <div className="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+              {/* Close Button */}
+              <button
+                onClick={closeImageModal}
+                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-2"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Navigation Buttons */}
+              {selectedImage.allImages &&
+                selectedImage.allImages.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePreviousImage}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-2"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button
+                      onClick={handleNextImage}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 bg-black bg-opacity-50 rounded-full p-2"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </>
+                )}
+
+              {/* Image Counter */}
+              {selectedImage.allImages &&
+                selectedImage.allImages.length > 1 && (
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 px-3 py-1 rounded-full text-sm">
+                    {currentImageIndex + 1} / {selectedImage.allImages.length}
+                  </div>
+                )}
+
+              {/* Main Image */}
+              <div className="max-w-full max-h-full flex items-center justify-center">
+                <img
+                  src={selectedImage.url}
+                  alt="Enlarged customer image"
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                  onError={(e) => {
+                    e.target.src =
+                      "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMDAgMTAwTDEwMCAxMDAiIHN0cm9rZT0iIzlDQTNBRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHRleHQgeD0iMTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM5Q0EzQUYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCI+SW1hZ2Ugbm90IGZvdW5kPC90ZXh0Pgo8L3N2Zz4=";
+                  }}
+                />
               </div>
             </div>
           </div>

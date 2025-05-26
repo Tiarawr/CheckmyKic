@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 
 export default function CheckNow() {
   const [brands, setBrands] = useState("");
@@ -16,6 +17,49 @@ export default function CheckNow() {
     navigate("/");
   };
 
+  const Loader = () => {
+    return (
+      <div className="loader-wrapper">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20"></circle>
+        </svg>
+        <style jsx>{`
+          .loader-wrapper svg {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+          }
+          .loader-wrapper circle {
+            fill: none;
+            stroke: hsl(214, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+          }
+          @keyframes rotate4 {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes dash4 {
+            0% {
+              stroke-dasharray: 1, 200;
+              stroke-dashoffset: 0;
+            }
+            50% {
+              stroke-dasharray: 90, 200;
+              stroke-dashoffset: -35px;
+            }
+            100% {
+              stroke-dashoffset: -125px;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -68,7 +112,7 @@ export default function CheckNow() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const nextPhoto = () => {
@@ -93,6 +137,16 @@ export default function CheckNow() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div className="min-h-screen bg-white">
+        {/* Loading Overlay */}
+        {isSubmitting && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex flex-col justify-center items-center">
+            <Loader />
+            <p className="text-white text-lg mt-4 font-medium">
+              Processing your request...
+            </p>
+          </div>
+        )}
+
         {/* Zoom Modal */}
         {zoomedPhoto && (
           <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center p-4">
@@ -130,18 +184,39 @@ export default function CheckNow() {
                   Brands Sneakers
                 </label>
                 <div className="relative">
-                  <input
-                    id="brands"
-                    type="text"
-                    value={brands}
-                    onChange={(e) => setBrands(e.target.value)}
-                    placeholder=" "
-                    className="peer w-full h-12 md:h-15 bg-white rounded-xl md:rounded-2xl border border-[#BFBEBE] px-4 pt-4 text-base md:text-lg focus:outline-none focus:border-[#46ADAC]"
-                    required
-                  />
-                  <span className="absolute left-4 top-2 text-[#999] text-sm transition-all peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 md:peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#46ADAC]">
-                    Enter your BRANDS
-                  </span>
+                  <div className="relative">
+                    <input
+                      id="brands"
+                      type="text"
+                      value={brands}
+                      onChange={(e) => setBrands(e.target.value)}
+                      placeholder=" "
+                      className="
+      peer
+      w-full
+      h-14 md:h-16        /* slightly larger: 56px default, 64px on md */
+      bg-white
+      rounded-xl md:rounded-2xl
+      border border-[#BFBEBE]
+      px-4
+      pt-5 pb-3         /* adjusted padding: top 20px, bottom 12px */
+      text-base md:text-lg
+      focus:outline-none focus:border-[#46ADAC]
+    "
+                      required
+                    />
+                    <span
+                      className="
+      absolute left-4
+      text-[#999] text-sm md:text-base
+      transition-all
+      peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
+      peer-focus:top-2 md:peer-focus:top-3 peer-focus:text-sm peer-focus:text-[#46ADAC]
+    "
+                    >
+                      Enter your BRANDS
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -160,10 +235,25 @@ export default function CheckNow() {
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
                     placeholder=" "
-                    className="peer w-full h-12 md:h-15 bg-white rounded-xl md:rounded-2xl border border-[#BFBEBE] px-4 pt-4 text-base md:text-lg focus:outline-none focus:border-[#46ADAC]"
+                    className="peer w-full h-12 md:h-15 bg-peer
+      w-full
+      h-14 md:h-16        /* slightly larger: 56px default, 64px on md */
+      bg-white
+      rounded-xl md:rounded-2xl
+      border border-[#BFBEBE]
+      px-4
+      pt-5 pb-3         /* adjusted padding: top 20px, bottom 12px */
+      text-base md:text-lg
+      focus:outline-none focus:border-[#46ADAC] rounded-xl md:rounded-2xl border border-[#BFBEBE] px-4 pt-4 text-base md:text-lg focus:outline-none focus:border-[#46ADAC]"
                     required
                   />
-                  <span className="absolute left-4 top-2 text-[#999] text-sm transition-all peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 md:peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#46ADAC]">
+                  <span
+                    className="absolute left-4 top-2 text-[#999] absolute left-4
+      text-[#999] text-sm md:text-base
+      transition-all
+      peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
+      peer-focus:top-2 md:peer-focus:top-3 peer-focus:text-sm peer-focus:text-[#46ADAC]-sm transition-all peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 md:peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#46ADAC]"
+                  >
                     Enter your MODEL
                   </span>
                 </div>
@@ -266,7 +356,11 @@ export default function CheckNow() {
 
                           {/* Upload Button */}
                           <div className="relative">
-                            <div className="w-40 h-12 bg-[#46ADAC] rounded-xl text-white font-semibold text-lg flex justify-center items-center cursor-pointer">
+                            <div
+                              className="w-40 h-12 bg-[#46ADAC] rounded-xl text-white font-semibold text-lg flex justify-center items-center cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#37928a] active:scale-95"
+                            >
                               Photo Upload
                               <input
                                 id="photos"
@@ -334,10 +428,25 @@ export default function CheckNow() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder=" "
-                    className="peer w-full h-12 md:h-15 bg-white rounded-xl md:rounded-2xl border border-[#BFBEBE] px-4 pt-4 text-base md:text-lg focus:outline-none focus:border-[#46ADAC]"
+                    className="peer
+      w-full
+      h-14 md:h-16        /* slightly larger: 56px default, 64px on md */
+      bg-white
+      rounded-xl md:rounded-2xl
+      border border-[#BFBEBE]
+      px-4
+      pt-5 pb-3         /* adjusted padding: top 20px, bottom 12px */
+      text-base md:text-lg
+      focus:outline-none focus:border-[#46ADAC] w-full h-12 md:h-15 bg-white rounded-xl md:rounded-2xl border border-[#BFBEBE] px-4 pt-4 text-base md:text-lg focus:outline-none focus:border-[#46ADAC]"
                     required
                   />
-                  <span className="absolute left-4 top-2 text-[#999] text-sm transition-all peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 md:peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#46ADAC]">
+                  <span
+                    className="absolute absolute left-4
+      text-[#999] text-sm md:text-base
+      transition-all
+      peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
+      peer-focus:top-2 md:peer-focus:top-3 peer-focus:text-sm peer-focus:text-[#46ADAC]-4 top-2 text-[#999] text-sm transition-all peer-placeholder-shown:top-3 md:peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 md:peer-focus:top-2 peer-focus:text-sm peer-focus:text-[#46ADAC]"
+                  >
                     Your Email
                   </span>
                 </div>
@@ -350,7 +459,12 @@ export default function CheckNow() {
             <button
               type="button"
               onClick={handleCancel}
-              className="w-full sm:w-52 h-12 md:h-16 px-8 md:px-12 py-3 md:py-5 bg-[#B56868] rounded-3xl md:rounded-[40px] flex justify-center items-center cursor-pointer"
+              className={`w-full sm:w-52 h-12 md:h-16
+    px-8 md:px-12 py-3 md:py-5
+    bg-[#B56868] rounded-3xl md:rounded-[40px]
+    flex justify-center items-center cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#a15454] active:scale-95`}
             >
               <span className="text-white text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px]">
                 Cancel
@@ -359,12 +473,13 @@ export default function CheckNow() {
             <button
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className={`w-full sm:w-48 h-12 md:h-16 px-8 md:px-16 py-3 md:py-6 ${
-                isSubmitting ? "bg-gray-400" : "bg-[#B56868]"
-              } rounded-3xl md:rounded-[40px] flex justify-center items-center cursor-pointer`}
+              className={`w-full sm:w-48 h-12 md:h-16 px-8 md:px-16 py-3 md:py-6
+                bg-[#B56868] rounded-3xl md:rounded-[40px] flex justify-center items-center cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#a15454] active:scale-95`}
             >
               <span className="text-white text-lg md:text-xl font-bold uppercase tracking-[2px] md:tracking-[3px]">
-                {isSubmitting ? "Processing..." : "Next"}
+                Next
               </span>
             </button>
           </div>

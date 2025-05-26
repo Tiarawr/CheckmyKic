@@ -9,9 +9,11 @@ export default function Explore() {
   useEffect(() => {
     const fetchShoes = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/shoes");
+        const response = await fetch(
+          "https://9213-157-10-8-222.ngrok-free.app/api/shoes"
+        ); //port front
         const data = await response.json();
-        setShoes(data); // ✅ update state
+        setShoes(data);
       } catch (error) {
         console.error("Failed to fetch shoes:", error);
       }
@@ -25,8 +27,12 @@ export default function Explore() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentShoes = shoes.slice(startIndex, endIndex);
+  const IMAGE_BASE_URL = "https://751c-157-10-8-222.ngrok-free.app"; //port 3000
 
-  // Generate page numbers array
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   const getPageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 5;
@@ -105,9 +111,16 @@ export default function Explore() {
                 {/* Shoe Image */}
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src={`http://localhost:3000${shoe.image}`}
+                    src={`${IMAGE_BASE_URL}${shoe.image.replace(
+                      "/uploads//uploads",
+                      "/uploads"
+                    )}`}
                     alt={shoe.name}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      console.error("Image gagal dimuat:", e.target.src);
+                      e.target.style.display = "none";
+                    }}
                   />
                 </div>
 

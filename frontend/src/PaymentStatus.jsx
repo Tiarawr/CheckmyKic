@@ -10,7 +10,7 @@ export default function PaymentStatus() {
     const checkPaymentStatus = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/payment-status/${shoe_id}`
+          `https://9213-157-10-8-222.ngrok-free.app/api/payment-status/${shoe_id}`
         );
         const data = await res.json();
         setStatus(data.status);

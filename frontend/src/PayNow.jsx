@@ -8,6 +8,50 @@ export default function Paynow() {
   const [isPaid, setIsPaid] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  const Loader = () => {
+    return (
+      <div className="loader-wrapper">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20"></circle>
+        </svg>
+        <style jsx>{`
+          .loader-wrapper svg {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+          }
+          .loader-wrapper circle {
+            fill: none;
+            stroke: hsl(214, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+          }
+          @keyframes rotate4 {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes dash4 {
+            0% {
+              stroke-dasharray: 1, 200;
+              stroke-dashoffset: 0;
+            }
+            50% {
+              stroke-dasharray: 90, 200;
+              stroke-dashoffset: -35px;
+            }
+            100% {
+              stroke-dashoffset: -125px;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  };
+
   if (!state) {
     navigate("/checknow");
     return null;
@@ -191,7 +235,9 @@ export default function Paynow() {
             <div className="sticky bottom-0 bg-white p-4">
               <button
                 onClick={handleViewStatus}
-                className="w-full h-16 bg-[#46ADAC] text-white font-semibold rounded-full"
+                className="w-full h-16 bg-[#46ADAC] text-white font-semibold rounded-full cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#37928a] active:scale-95"
               >
                 VIEW PAYMENT STATUS
               </button>

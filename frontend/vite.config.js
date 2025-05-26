@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:3000",
     },
-    allowedHosts: ["16f1-157-10-8-222.ngrok-free.app"],
+    allowedHosts: ["9213-157-10-8-222.ngrok-free.app"],
     host: true,
   },
   css: {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 
 export default function Payment() {
   const navigate = useNavigate();
@@ -9,6 +10,49 @@ export default function Payment() {
 
   const [selected, setSelected] = useState("");
 
+  const Loader = () => {
+    return (
+      <div className="loader-wrapper">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20"></circle>
+        </svg>
+        <style jsx>{`
+          .loader-wrapper svg {
+            width: 3.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite;
+          }
+          .loader-wrapper circle {
+            fill: none;
+            stroke: hsl(214, 97%, 59%);
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite;
+          }
+          @keyframes rotate4 {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes dash4 {
+            0% {
+              stroke-dasharray: 1, 200;
+              stroke-dashoffset: 0;
+            }
+            50% {
+              stroke-dasharray: 90, 200;
+              stroke-dashoffset: -35px;
+            }
+            100% {
+              stroke-dashoffset: -125px;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  };
   const handlePay = async () => {
     if (!selected) {
       alert("Silakan pilih metode pembayaran.");
@@ -124,7 +168,6 @@ export default function Payment() {
     </div>
   );
 
-  // Logo components using SVG files from public folder
   const GoPayLogo = () => (
     <img
       src="/gopay 1.svg"
@@ -285,7 +328,9 @@ export default function Payment() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:justify-between items-center mt-8 sm:mt-12">
             <button
               onClick={() => navigate("/checknow")}
-              className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center order-2 sm:order-1"
+              className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#B56868] rounded-[40px] flex justify-center items-center order-2 sm:order-1 cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#a15454] active:scale-95"
             >
               <span className="text-white text-lg sm:text-2xl font-bold font-['Open_Sans'] uppercase tracking-[2px] sm:tracking-[3.60px]">
                 BACK
@@ -294,7 +339,9 @@ export default function Payment() {
 
             <button
               onClick={handlePay}
-              className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center order-1 sm:order-2"
+              className="w-full sm:w-72 h-12 sm:h-16 px-8 sm:px-14 py-3 sm:py-4 bg-[#46ADAC] rounded-[40px] flex justify-center items-center order-1 sm:order-2 cursor-pointer
+    shadow-md transition duration-200 ease-in-out
+    hover:shadow-lg hover:bg-[#37928a] active:scale-95"
             >
               <span className="text-white text-lg sm:text-2xl font-bold font-['Open_Sans'] uppercase tracking-[2px] sm:tracking-[3.60px]">
                 Pay NOW

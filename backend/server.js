@@ -140,7 +140,7 @@ app.get("/api/shoes", async (req, res) => {
         JSON_UNQUOTE(JSON_EXTRACT(s.image_url, '$[0]')) AS image_url,
         s.result
       FROM shoes s
-      WHERE s.result IS NOT NULL -- ✅ ambil PASS & NOT PASS
+      WHERE s.result IS NOT NULL 
       ORDER BY s.created_at DESC
     `);
 

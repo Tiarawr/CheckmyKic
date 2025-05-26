@@ -39,12 +39,21 @@ function App() {
           path="/"
           element={
             <>
-              <Home />
-              <AuthenticSection />
-              <CheckMyKicks />
-              <WhyChooseUs />
-              <Explore1 />
-              <Review />
+              <section id="home">
+                <Home />
+              </section>
+              <section id="checkmykicks">
+                <CheckMyKicks />
+              </section>
+              <section id="why">
+                <WhyChooseUs />
+              </section>
+              <section id="explore">
+                <Explore1 />
+              </section>
+              <section id="review">
+                <Review />
+              </section>
               <Footer />
             </>
           }
