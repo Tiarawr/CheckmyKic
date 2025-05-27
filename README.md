@@ -141,9 +141,9 @@ Isi:
 > Mohon maaf, halaman admin bersifat pribadi & tidak bisa diakses publik karena alasan privasi.  
 > Tapi kamu tetap bisa **menjelajahi kode dan tampilannya** lewat repositori ini.
 
-- [Admin Preview 1](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184428.png)
-- [Admin Preview 2](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184612.png)
-- [Admin Preview 3](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184856.png)
+- ![Admin Preview 1](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184428.png)
+- ![Admin Preview 2](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184612.png)
+- ![Admin Preview 3](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184856.png)
 
 ---
 
