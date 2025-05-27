@@ -156,4 +156,3 @@ Gunakan endpoint `POST /api/manual-payment` untuk mensimulasikan pembayaran tanp
 ## 📜 Lisensi
 
 MIT © 2025 — CheckMyKicks  
-Powered by ❤️ Node.js, Express, Xendit, dan semangat sneakerhead.
