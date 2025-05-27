@@ -1,6 +1,6 @@
 # 🧾 CheckMyKicks - Backend API
 
-Sistem backend untuk **CheckMyKicks**, layanan verifikasi keaslian sepatu berbasis gambar dan pembayaran Virtual Account (VA).
+Backend untuk **CheckMyKicks**, layanan verifikasi keaslian sepatu berbasis gambar dan pembayaran Virtual Account (VA) menggunakan Xendit.
 
 ---
 
@@ -22,17 +22,17 @@ Sistem backend untuk **CheckMyKicks**, layanan verifikasi keaslian sepatu berbas
 ├── routes/
 │   └── PayNow.js
 ├── uploads/
-├── .env (TIDAK DIUPLOAD)
+├── public/      ← untuk logo email
+├── .env         ← (TIDAK DIUPLOAD)
 ```
 
 ---
 
 ## ⚙️ Konfigurasi `.env`
 
-Untuk alasan keamanan, file `.env` **tidak diupload**. Kamu harus **membuat sendiri** file `.env` di root folder proyek:
+Buat file `.env` di root folder dengan isi sebagai berikut:
 
-### Buat `.env` di root dan isi seperti berikut:
-```
+```env
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
@@ -44,8 +44,7 @@ EMAIL_SENDER=youremail@gmail.com
 EMAIL_APP_PASSWORD=your_app_password
 ```
 
-> 📌 **EMAIL_APP_PASSWORD** bisa kamu dapatkan dari pengaturan Gmail → App Password (bukan password biasa).  
-> Pastikan Gmail kamu mengaktifkan 2FA dan App Password.
+> 📌 **EMAIL_APP_PASSWORD** dapat diperoleh dari pengaturan Gmail → App Password. Pastikan Gmail kamu sudah mengaktifkan 2FA.
 
 ---
 
@@ -58,7 +57,7 @@ npm install
 node server.js
 ```
 
-Server akan berjalan di:  
+Server akan berjalan di:
 ```
 http://localhost:3000
 ```
@@ -69,18 +68,18 @@ http://localhost:3000
 
 ### ✅ Upload & Simpan Sepatu
 `POST /api/checknow`  
-Form-data body:
-- `email`: `string`
-- `brands`: `string`
-- `model`: `string`
-- `photos`: upload up to 8 images
+Form-data:
+- `email`: string
+- `brands`: string
+- `model`: string
+- `photos`: upload max 8 file gambar
 
 ---
 
 ### 🏦 Buat Virtual Account (VA)
 `POST /api/create-va`
 
-#### Body (JSON):
+Contoh Body (JSON):
 ```json
 {
   "bank_code": "BNI",
@@ -89,37 +88,19 @@ Form-data body:
 }
 ```
 
-#### Response:
-```json
-{
-  "account_number": "381659999561575",
-  "bank_code": "BNI",
-  "expected_amount": 50000,
-  "shoe_id": 94,
-  ...
-}
-```
-
 ---
 
 ### 💸 Simulasi Pembayaran Manual
-`POST /api/manual-payment`
-
-#### Cara testing di **Postman**:
-1. Buka Postman
-2. Method: `POST`
-3. URL: `http://localhost:3000/api/manual-payment`
-4. Headers → `Content-Type: application/json`
-5. Body → pilih **raw**, tipe: JSON, lalu isi:
+`POST /api/manual-payment`  
+Contoh Body (JSON):
 ```json
 {
   "account_number": "381659999561575",
   "amount": 50000
 }
 ```
-6. Klik **Send**
 
-#### ✅ Response Sukses:
+Response sukses:
 ```json
 {
   "message": "Simulasi pembayaran berhasil & email terkirim."
@@ -140,23 +121,39 @@ GET /api/payment-status/94
 
 ## 📧 Contoh Email Setelah Pembayaran
 
-Email akan dikirim otomatis ke pengguna setelah VA dibayar (atau disimulasikan):
+Subject:
+```
+✅ Pembayaran Berhasil - CheckMyKicks
+```
 
-**Subject:** ✅ Pembayaran Berhasil - CheckMyKicks  
-**Isi:**  
+Isi:
 > Pembayaran untuk sepatu ID `94` berhasil.  
 > Tim sedang memverifikasi keaslian sepatumu.
 
 ---
 
-## 💬 Catatan
+## 🖼️ Preview Aplikasi
 
-- Xendit API Key hanya aktif di mode development (gunakan test key).
-- Nodemailer menggunakan Gmail dan butuh **App Password**.
-- Email terlampir logo dari folder `public` dengan CID.
+### 🎯 Halaman Pengguna
+![Preview 1](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20183547.png)
+
+### 🔐 Dashboard Admin (Login Private)
+> Mohon maaf, halaman admin bersifat pribadi & tidak bisa diakses publik karena alasan privasi.  
+> Tapi kamu tetap bisa **menjelajahi kode dan tampilannya** lewat repositori ini.
+
+- [Admin Preview 1](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184428.png)
+- [Admin Preview 2](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184612.png)
+- [Admin Preview 3](https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184856.png)
+
+---
+
+## 🧪 Testing Manual
+
+Gunakan endpoint `POST /api/manual-payment` untuk mensimulasikan pembayaran tanpa menggunakan VA asli. Sistem tetap mengirim email dan memperbarui status.
 
 ---
 
 ## 📜 Lisensi
 
-MIT © 2025 — CheckMyKicks
+MIT © 2025 — CheckMyKicks  
+Powered by ❤️ Node.js, Express, Xendit, dan semangat sneakerhead.
