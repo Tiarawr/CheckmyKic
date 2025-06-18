@@ -1,48 +1,76 @@
 <div align="center">
 
-# 👟 CheckMyKicks - Backend API
+# 👟✨ CheckMyKicks - Backend API ✨👟
 
-<img src="https://via.placeholder.com/200x200/FF6B6B/FFFFFF?text=👟%0ACheckMyKicks%0AAPI" alt="CheckMyKicks Logo" width="200" height="200" style="border-radius: 50%;">
+<img src="https://via.placeholder.com/220x220/FFB6C1/FFFFFF?text=👟%0A✨%0ACheckMyKicks%0A✨%0AAPI" alt="CheckMyKicks Logo" width="220" height="220" style="border-radius: 50%; border: 4px solid #FFB6C1; box-shadow: 0 8px 16px rgba(255,182,193,0.3);">
 
-*Authentic shoe verification service with image analysis and Virtual Account payments*
+*✨ Kawaii shoe verification service with magical image analysis and sparkly Virtual Account payments ✨*
 
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/)
-[![Xendit](https://img.shields.io/badge/Xendit-1E88E5?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMjIgMTJMMTIgMjJMMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+&logoColor=white)](https://xendit.co/)
+<div style="margin: 20px 0;">
+  
+[![Node.js](https://img.shields.io/badge/Node.js-🌿_339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-⚡_000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-🗄️_4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com/)
+[![Xendit](https://img.shields.io/badge/Xendit-💳_1E88E5?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMjIgMTJMMTIgMjJMMiAxMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+&logoColor=white)](https://xendit.co/)
+[![Website](https://img.shields.io/badge/Website-🌸_checkmykicks.my.id-FF69B4?style=for-the-badge&logo=web)](https://checkmykicks.my.id)
 
-**Backend API for CheckMyKicks** - Image-based shoe authenticity verification with Xendit Virtual Account payments
+</div>
+
+**🌈 Backend API for CheckMyKicks 🌈** - Magical shoe authenticity verification with sparkly payments! ✨
+
+<div style="font-size: 24px; margin: 15px 0;">
+🌸 Made with love by <a href="https://github.com/Tiarawr">@Tiarawr</a> 🌸
+</div>
 
 </div>
 
 ---
 
-## 🚀 Features
+## 🌸 Live Magical Experience 🌸
 
 <div align="center">
-<img src="https://via.placeholder.com/800x300/E8F5E8/4CAF50?text=🎯+Core+Features+%0A%0A📸+Image+Upload+%7C+💳+VA+Payments+%7C+✅+Auto+Verification+%7C+📧+Email+Notifications" alt="Features Overview" width="600" style="border-radius: 10px;">
+
+### ✨ **Try Our Kawaii Shoe Verifier!** ✨
+[![Visit Website](https://img.shields.io/badge/🌸_Visit_Our_Cute_Website-checkmykicks.my.id-FF69B4?style=for-the-badge&logoColor=white)](https://checkmykicks.my.id)
+
+**🌟 Experience the magic at [checkmykicks.my.id](https://checkmykicks.my.id) 🌟**
+
+<a href="https://checkmykicks.my.id" target="_blank">
+<img src="https://via.placeholder.com/800x450/FFE4E6/FF69B4?text=🌸+checkmykicks.my.id+🌸%0A%0A👟+Kawaii+Shoe+Verification+👟%0A💖+Magical+Payment+System+💖%0A✨+Sparkling+Authentic+Results+✨%0A🌈+So+Much+Cuteness!+🌈%0A%0A💕+Click+to+Enter+Our+World!+💕" alt="CheckMyKicks Kawaii Website" width="700" style="border-radius: 20px; border: 3px solid #FFB6C1; box-shadow: 0 8px 20px rgba(255,105,180,0.3);">
+</a>
+
+*🦄 Click the magical image above to enter our cute world! 🦄*
+
 </div>
 
-<table>
-<tr>
-<td width="50%">
+---
 
-### 🔍 **Core Functionality**
-- 📸 **Shoe Image Upload** - Support up to 8 images per verification
-- 💳 **Dynamic VA Creation** - Powered by Xendit payment gateway  
-- 🔍 **Payment Status Tracking** - Real-time status via `shoe_id`
-- 🧪 **Manual Payment Simulation** - Perfect for testing workflows
-- 📧 **Automated Email Service** - Notifications on successful payments
+## 🌈 Kawaii Features 🌈
+
+<div align="center">
+<img src="https://via.placeholder.com/800x350/F8E8FF/DA70D6?text=✨+Magical+Features+✨%0A%0A🌸+Cute+Image+Upload+🌸%0A💳+Sparkly+VA+Payments+💳%0A🌟+Auto+Magic+Verification+🌟%0A📧+Adorable+Email+Notifications+📧" alt="Kawaii Features" width="650" style="border-radius: 25px; border: 3px solid #DDA0DD; box-shadow: 0 10px 25px rgba(221,160,221,0.4);">
+</div>
+
+<table style="border: none;">
+<tr>
+<td width="50%" style="padding: 20px; background: linear-gradient(135deg, #FFE4E6, #FFF0F5); border-radius: 20px; border: 2px solid #FFB6C1;">
+
+### 🌸 **Magical Core Features** 🌸
+- 📸 **Kawaii Image Upload** - Up to 8 cute shoe pics! 
+- 💖 **Dynamic VA Creation** - Powered by sparkly Xendit magic ✨
+- 🔍 **Real-time Status Tracking** - Follow your shoe's journey! 🌟
+- 🧪 **Manual Payment Simulation** - Perfect for testing cuteness! 💕
+- 📧 **Adorable Email Service** - Sweet notifications that make you smile! 🌈
 
 </td>
-<td width="50%">
+<td width="50%" style="padding: 20px; background: linear-gradient(135deg, #E6E6FA, #F0E6FF); border-radius: 20px; border: 2px solid #DDA0DD;">
 
-### ⚡ **Technical Stack**
-- 🟢 **Node.js & Express** - Fast and scalable backend
-- 🗄️ **MySQL Database** - Reliable data storage
-- 🔐 **Xendit Integration** - Secure payment processing
-- 📮 **Gmail SMTP** - Professional email delivery
-- 🖼️ **Multer File Handling** - Efficient image processing
+### ✨ **Technical Magic Stack** ✨
+- 🟢 **Node.js & Express** - Fast like a unicorn! 🦄
+- 🗄️ **MySQL Database** - Reliable storage castle! 🏰
+- 🔐 **Xendit Integration** - Secure payment fairy! 🧚‍♀️
+- 📮 **Gmail SMTP** - Professional email butterflies! 🦋
+- 🖼️ **Multer File Handling** - Efficient image magic! ✨
 
 </td>
 </tr>
@@ -50,141 +78,146 @@
 
 ---
 
-## 📁 Project Structure
+## 📁 Cute Project Structure 📁
+
+<div align="center">
+<img src="https://via.placeholder.com/600x200/FFF0F5/FF69B4?text=📁+Project+Structure+📁%0A%0AOrganized+like+a+cute+dollhouse!" alt="Project Structure" width="500" style="border-radius: 15px; border: 2px solid #FFB6C1;">
+</div>
 
 ```
-📦 CheckMyKicks-Backend
-├── 🚀 server.js                 # Main application entry point
-├── 📧 emailService.js           # Email notification service
+📦 CheckMyKicks-Backend (◕‿◕)♡
+├── 🚀 server.js                 # Main magical entry point ✨
+├── 📧 emailService.js           # Cute email notification service 💌
 ├── 📂 routes/
-│   └── 💳 PayNow.js            # Payment route handlers
-├── 📁 uploads/                  # Image storage directory
-├── 🎨 public/                   # Static assets (email logos)
-└── ⚙️ .env                     # Environment variables (NOT UPLOADED)
+│   └── 💳 PayNow.js            # Payment route handlers 💕
+├── 📁 uploads/                  # Image storage wonderland 🖼️
+├── 🎨 public/                   # Static assets (kawaii logos) 🌸
+└── ⚙️ .env                     # Secret environment variables 🤫
 ```
 
 ---
 
-## ⚙️ Environment Configuration
+## ⚙️ Magical Environment Setup ⚙️
 
 <div align="center">
 
-### 🔐 **Setup your `.env` file**
+### 🔐 **Setup Your Cute `.env` File** 🔐
 
-<img src="https://via.placeholder.com/500x200/FFF3E0/FF9800?text=⚙️+Environment+Setup+%0A%0ACreate+.env+file+in+root+directory" alt="Environment Setup" width="400" style="border-radius: 8px;">
+<img src="https://via.placeholder.com/550x250/FFE4E1/FF6347?text=⚙️+Environment+Magic+⚙️%0A%0A🌸+Create+your+.env+spell+book+🌸%0A✨+In+the+root+directory+✨" alt="Environment Setup" width="450" style="border-radius: 20px; border: 3px solid #FFA07A;">
 
 </div>
 
-Create a `.env` file in the root directory:
+Create a magical `.env` file in your root directory:
 
 ```env
-# 🗄️ Database Configuration
+# 🗄️ Database Castle Configuration 🏰
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_password
+DB_PASSWORD=your_magical_password
 DB_NAME=checkmykicks
 
-# 🌐 Server Configuration  
+# 🌐 Server Fairy Configuration 🧚‍♀️
 PORT=3000
 
-# 💳 Xendit Payment Gateway
+# 💳 Xendit Payment Magic Gateway ✨
 XENDIT_API_KEY=xnd_development_***************
 
-# 📧 Email Service Configuration
+# 📧 Cute Email Service Configuration 💌
 EMAIL_SENDER=youremail@gmail.com
-EMAIL_APP_PASSWORD=your_app_password
+EMAIL_APP_PASSWORD=your_super_secret_app_password
 ```
 
-> 📌 **Important:** Get your `EMAIL_APP_PASSWORD` from Gmail Settings → App Passwords. Make sure 2FA is enabled on your Gmail account.
+> 🌟 **Kawaii Tip:** Get your `EMAIL_APP_PASSWORD` from Gmail Settings → App Passwords. Make sure 2FA is enabled for extra sparkles! ✨
 
 ---
 
-## 🛠️ Installation & Setup
+## 🛠️ Magical Installation & Setup 🛠️
 
 <div align="center">
 
-### 🚀 **Quick Start Guide**
+### 🚀 **Kawaii Quick Start Guide** 🚀
 
-<img src="https://via.placeholder.com/600x250/E3F2FD/2196F3?text=🚀+Get+Started+in+3+Steps+%0A%0A1.+Clone+Repository+%0A2.+Install+Dependencies+%0A3.+Start+Server" alt="Quick Start" width="500" style="border-radius: 10px;">
+<img src="https://via.placeholder.com/650x300/E0FFFF/20B2AA?text=🚀+Get+Started+in+3+Magical+Steps+🚀%0A%0A1.+📥+Clone+Our+Magical+Repository+📥%0A2.+📦+Install+Cute+Dependencies+📦%0A3.+✨+Start+Your+Kawaii+Server+✨" alt="Quick Start Guide" width="550" style="border-radius: 25px; border: 3px solid #48D1CC;">
 
 </div>
 
 ```bash
-# 📥 Clone the repository
+# 📥 Clone our magical repository
 git clone https://github.com/Tiarawr/CheckmyKic.git
 cd CheckmyKic
 
-# 📦 Install dependencies
+# 📦 Install all the cute dependencies
 npm install
 
-# 🚀 Start the development server
+# 🚀 Start your kawaii development server
 node server.js
 ```
 
-<div align="center">
+<div align="center" style="margin: 20px 0;">
 
-**🌐 Server will be running at:**
-[![Local Server](https://img.shields.io/badge/🌐_Local_Server-http://localhost:3000-success?style=for-the-badge)](http://localhost:3000)
+**🌐 Your magical server will be running at:**
+[![Local Server](https://img.shields.io/badge/🌸_Kawaii_Local_Server-http://localhost:3000-FF69B4?style=for-the-badge&logoColor=white)](http://localhost:3000)
 
 </div>
 
 ---
 
-## 📮 API Endpoints
+## 📮 Adorable API Endpoints 📮
 
 <div align="center">
 
-### 🎯 **API Documentation**
+### 🎯 **Kawaii API Documentation** 🎯
 
-<img src="https://via.placeholder.com/700x150/F3E5F5/9C27B0?text=📮+RESTful+API+Endpoints+%0A%0AComplete+documentation+for+all+available+endpoints" alt="API Endpoints" width="500" style="border-radius: 8px;">
+<img src="https://via.placeholder.com/700x200/F5F0FF/9370DB?text=📮+Adorable+RESTful+API+Endpoints+📮%0A%0A🌸+Complete+documentation+for+all+magical+endpoints+🌸" alt="API Endpoints" width="600" style="border-radius: 20px; border: 3px solid #BA55D3;">
 
 </div>
 
-### 📸 **Upload & Save Shoe Data**
+### 📸 **Upload & Save Cute Shoe Data** 📸
 ```http
-POST /api/checknow
+POST /api/checknow ✨
 ```
 
-**Form Data Parameters:**
-- `email` *(string)* - Customer email address
-- `brands` *(string)* - Shoe brand name  
-- `model` *(string)* - Shoe model name
-- `photos` *(files)* - Upload up to 8 image files
+**✨ Magical Form Data Parameters:**
+- `email` *(string)* - Customer's cute email address 💌
+- `brands` *(string)* - Adorable shoe brand name 👟
+- `model` *(string)* - Kawaii shoe model name 🌸
+- `photos` *(files)* - Upload up to 8 magical image files 📸
 
 ---
 
-### 💳 **Create Virtual Account**
+### 💳 **Create Sparkly Virtual Account** 💳
 ```http
-POST /api/create-va
+POST /api/create-va 🌟
 ```
 
-**Request Body (JSON):**
+**💕 Request Body (JSON):**
 ```json
 {
   "bank_code": "BNI",
-  "name": "John Doe", 
+  "name": "Kawaii Customer", 
   "expected_amount": 50000
 }
 ```
 
-**Response:**
+**✨ Magical Response:**
 ```json
 {
   "account_number": "381659999561575",
   "bank_code": "BNI",
   "amount": 50000,
-  "status": "PENDING"
+  "status": "PENDING",
+  "cuteness_level": "MAXIMUM! 🌸"
 }
 ```
 
 ---
 
-### 🧪 **Manual Payment Simulation**
+### 🧪 **Magical Payment Simulation** 🧪
 ```http
-POST /api/manual-payment
+POST /api/manual-payment 🦄
 ```
 
-**Request Body (JSON):**
+**🌈 Request Body (JSON):**
 ```json
 {
   "account_number": "381659999561575",
@@ -192,77 +225,82 @@ POST /api/manual-payment
 }
 ```
 
-**Success Response:**
+**🎉 Success Response:**
 ```json
 {
-  "message": "Payment simulation successful & email sent.",
-  "status": "PAID"
+  "message": "✨ Payment simulation successful & kawaii email sent! ✨",
+  "status": "PAID",
+  "sparkles": "EVERYWHERE! 🌟"
 }
 ```
 
 ---
 
-### 🔍 **Check Payment Status**
+### 🔍 **Check Magical Payment Status** 🔍
 ```http
-GET /api/payment-status/:shoe_id
+GET /api/payment-status/:shoe_id 🌸
 ```
 
-**Example:**
+**🌟 Example:**
 ```bash
 GET /api/payment-status/94
 ```
 
-**Response:**
+**💖 Response:**
 ```json
 {
   "shoe_id": 94,
   "payment_status": "PAID",
-  "verification_status": "IN_PROGRESS"
+  "verification_status": "IN_PROGRESS",
+  "cuteness_factor": "OVER_9000! 🌈"
 }
 ```
 
 ---
 
-## 📧 Email Notifications
+## 📧 Adorable Email Notifications 📧
 
 <div align="center">
 
-### 📮 **Automated Email System**
+### 📮 **Kawaii Automated Email System** 📮
 
-<img src="https://via.placeholder.com/500x200/E8F5E8/4CAF50?text=📧+Email+Notifications+%0A%0AAutomatic+emails+after+successful+payments" alt="Email System" width="400" style="border-radius: 10px;">
+<img src="https://via.placeholder.com/550x250/FFE4E1/FF1493?text=📧+Adorable+Email+Magic+📧%0A%0A💌+Automatic+cute+emails+💌%0A🌸+After+successful+payments+🌸" alt="Email System" width="450" style="border-radius: 20px; border: 3px solid #FF69B4;">
 
 </div>
 
-**Email Template:**
+**✨ Magical Email Template:**
 
-**Subject:** `✅ Payment Successful - CheckMyKicks`
+**Subject:** `🌸 Payment Successful - CheckMyKicks ✨`
 
-**Content:**
+**Kawaii Content:**
 ```
-Hello [Customer Name],
+Hello Beautiful Customer! 🌸
 
-Your payment for shoe verification (ID: #94) has been successfully processed.
+Your payment for our magical shoe verification (ID: #94) has been 
+successfully processed with lots of sparkles! ✨
 
-Our authentication team is now verifying the authenticity of your shoes.
-You'll receive another email with the results within 24-48 hours.
+Our adorable authentication team is now working their magic to verify 
+the authenticity of your precious shoes! 👟💖
 
-Thank you for choosing CheckMyKicks!
+You'll receive another cute email with the magical results within 24-48 hours! 🦄
 
-Best regards,
-CheckMyKicks Team
+Thank you for choosing CheckMyKicks - where every shoe gets the love it deserves! 💕
+
+With lots of kawaii love,
+The CheckMyKicks Magical Team 🌈
 ```
 
 ---
 
-## 🖼️ Application Preview
+## 🖼️ Kawaii Application Preview 🖼️
 
 <div align="center">
 
-### 🎯 **User Interface**
+### 🎯 **Adorable User Interface** 🎯
 
-<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20183547.png" alt="User Interface Preview" width="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20183547.png" alt="Kawaii User Interface" width="650" style="border-radius: 20px; border: 4px solid #FFB6C1; box-shadow: 0 8px 20px rgba(255,182,193,0.4);">
 
-*Clean and intuitive user interface for shoe verification requests*
+*🌸 Clean and super kawaii user interface for magical shoe verification requests! 🌸*
 
 </div>
 
@@ -270,24 +308,24 @@ CheckMyKicks Team
 
 <div align="center">
 
-### 🔐 **Admin Dashboard** *(Private Access)*
+### 🔐 **Secret Admin Dashboard** *(Magical Private Access)* 🔐
 
-> **Note:** Admin dashboard is private and requires authentication for security reasons.  
-> However, you can **explore the code and UI design** through this repository.
+> **🌟 Kawaii Note:** Our admin dashboard is super secret and requires magical authentication for security! 🔒  
+> But you can still **explore our cute code and adorable UI design** through this repository! 💕
 
-<table>
+<table style="border: none;">
 <tr>
-<td width="33%">
-<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184428.png" alt="Admin Dashboard 1" width="250" style="border-radius: 8px;">
-<p align="center"><em>Dashboard Overview</em></p>
+<td width="33%" align="center">
+<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184428.png" alt="Kawaii Admin Dashboard 1" width="280" style="border-radius: 15px; border: 3px solid #DDA0DD; box-shadow: 0 5px 15px rgba(221,160,221,0.3);">
+<p style="color: #DA70D6; font-weight: bold;">🌸 <em>Dashboard Overview</em> 🌸</p>
 </td>
-<td width="33%">
-<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184612.png" alt="Admin Dashboard 2" width="250" style="border-radius: 8px;">
-<p align="center"><em>Verification Management</em></p>
+<td width="33%" align="center">
+<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184612.png" alt="Kawaii Admin Dashboard 2" width="280" style="border-radius: 15px; border: 3px solid #DDA0DD; box-shadow: 0 5px 15px rgba(221,160,221,0.3);">
+<p style="color: #DA70D6; font-weight: bold;">✨ <em>Verification Magic</em> ✨</p>
 </td>
-<td width="33%">
-<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184856.png" alt="Admin Dashboard 3" width="250" style="border-radius: 8px;">
-<p align="center"><em>Payment Tracking</em></p>
+<td width="33%" align="center">
+<img src="https://github.com/Tiarawr/Tiarawr/blob/main/Screenshot%202025-05-27%20184856.png" alt="Kawaii Admin Dashboard 3" width="280" style="border-radius: 15px; border: 3px solid #DDA0DD; box-shadow: 0 5px 15px rgba(221,160,221,0.3);">
+<p style="color: #DA70D6; font-weight: bold;">💖 <em>Payment Tracking</em> 💖</p>
 </td>
 </tr>
 </table>
@@ -296,26 +334,26 @@ CheckMyKicks Team
 
 ---
 
-## 🧪 Testing & Development
+## 🧪 Kawaii Testing & Development 🧪
 
 <div align="center">
 
-### 🔬 **Testing Environment**
+### 🔬 **Magical Testing Environment** 🔬
 
-<img src="https://via.placeholder.com/500x150/FFF8E1/FFC107?text=🧪+Testing+Made+Easy+%0A%0AUse+manual+payment+simulation+for+development" alt="Testing" width="400" style="border-radius: 8px;">
+<img src="https://via.placeholder.com/550x200/FFFACD/FFD700?text=🧪+Testing+Made+Super+Cute+🧪%0A%0A🌟+Use+manual+payment+simulation+🌟%0A✨+For+adorable+development+✨" alt="Testing Environment" width="450" style="border-radius: 20px; border: 3px solid #DAA520;">
 
 </div>
 
-**Manual Payment Testing:**
-Use the `POST /api/manual-payment` endpoint to simulate payments without actual Virtual Account transactions. Perfect for:
+**🌈 Kawaii Manual Payment Testing:**
+Use our magical `POST /api/manual-payment` endpoint to simulate payments without actual Virtual Account transactions! Perfect for:
 
-- ✅ Testing payment workflows
-- ✅ Email notification testing  
-- ✅ Database status updates
-- ✅ Integration testing
+- ✅ Testing adorable payment workflows 💕
+- ✅ Cute email notification testing 📧
+- ✅ Database status updates with sparkles ✨
+- ✅ Integration testing with rainbows 🌈
 
 ```bash
-# Example test command
+# 🦄 Example magical test command
 curl -X POST http://localhost:3000/api/manual-payment \
   -H "Content-Type: application/json" \
   -d '{"account_number":"381659999561575","amount":50000}'
@@ -323,89 +361,89 @@ curl -X POST http://localhost:3000/api/manual-payment \
 
 ---
 
-## 🚀 Deployment & Production
+## 🚀 Magical Deployment & Production 🚀
 
 <div align="center">
 
-### 🌐 **Production Ready**
+### 🌐 **Production Ready with Sparkles** 🌐
 
-[![Deploy Status](https://img.shields.io/badge/Deployment-Ready-success?style=for-the-badge)](https://github.com/Tiarawr/CheckmyKic)
-[![Security](https://img.shields.io/badge/Security-Verified-green?style=for-the-badge)](https://github.com/Tiarawr/CheckmyKic)
+[![Deploy Status](https://img.shields.io/badge/Deployment-✨_Ready_with_Magic-FF69B4?style=for-the-badge&logoColor=white)](https://checkmykicks.my.id)
+[![Security](https://img.shields.io/badge/Security-🛡️_Kawaii_Verified-9370DB?style=for-the-badge&logoColor=white)](https://checkmykicks.my.id)
 
 </div>
 
-**Production Checklist:**
-- ✅ Environment variables configured
-- ✅ Database connection secured
-- ✅ Xendit API keys (production)
-- ✅ Email service configured
-- ✅ File upload limits set
-- ✅ Error handling implemented
+**🌸 Kawaii Production Checklist:**
+- ✅ Environment variables configured with love 💕
+- ✅ Database connection secured with magic 🔒
+- ✅ Xendit API keys (production sparkles) ✨
+- ✅ Email service configured cutely 📧
+- ✅ File upload limits set adorably 📸
+- ✅ Error handling implemented kawaii-ly 🌈
 
 ---
 
-## 🤝 Contributing
+## 🤝 Join Our Kawaii Development Team 🤝
 
 <div align="center">
 
-### 💖 **Join Our Development Team**
+### 💖 **Contributors Welcome with Open Arms** 💖
 
-<img src="https://via.placeholder.com/400x150/E1F5FE/00BCD4?text=🤝+Contributors+Welcome+%0A%0AHelp+improve+CheckMyKicks!" alt="Contributing" width="300" style="border-radius: 10px;">
+<img src="https://via.placeholder.com/450x200/E1F5FE/FF1493?text=🤝+Kawaii+Contributors+Welcome+🤝%0A%0A💕+Help+make+CheckMyKicks+cuter!+💕%0A🌸+Join+our+magical+team!+🌸" alt="Contributors Welcome" width="400" style="border-radius: 20px; border: 3px solid #00CED1;">
 
 </div>
 
-We welcome contributions! Here's how you can help:
+We absolutely LOVE contributions! Here's how you can add your magic to our project:
 
-1. 🍴 **Fork** the repository
-2. 🌿 **Create** your feature branch (`git checkout -b feature/amazing-feature`)
-3. 💾 **Commit** your changes (`git commit -am 'Add amazing feature'`)
-4. 🚀 **Push** to the branch (`git push origin feature/amazing-feature`)
-5. 🎉 **Open** a Pull Request
-
----
-
-## 📞 Support & Contact
-
-<div align="center">
-
-| Contact Method | Details | Status |
-|----------------|---------|--------|
-| 🐛 **Issues** | [GitHub Issues](https://github.com/Tiarawr/CheckmyKic/issues) | [![Issues](https://img.shields.io/github/issues/Tiarawr/CheckmyKic)](https://github.com/Tiarawr/CheckmyKic/issues) |
-| 💻 **Maintainer** | [@Tiarawr](https://github.com/Tiarawr) | [![GitHub](https://img.shields.io/badge/GitHub-Tiarawr-181717?logo=github)](https://github.com/Tiarawr) |
-| 📧 **Email** | Technical Support | Available |
-
-</div>
+1. 🍴 **Fork** our magical repository with love
+2. 🌿 **Create** your adorable feature branch (`git checkout -b feature/super-kawaii-feature`)
+3. 💾 **Commit** your changes with sparkles (`git commit -am 'Add super kawaii feature ✨'`)
+4. 🚀 **Push** to the branch with rainbows (`git push origin feature/super-kawaii-feature`)
+5. 🎉 **Open** a Pull Request with lots of cuteness!
 
 ---
 
-## 📜 License
+## 📞 Kawaii Support & Contact 📞
 
 <div align="center">
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+### 💌 **Get in Touch with Our Magical Team** 💌
 
-**MIT License © 2025 CheckMyKicks**
+<table style="border: none; background: linear-gradient(135deg, #FFE4E6, #E6E6FA); border-radius: 20px; padding: 20px;">
+<tr>
+<td align="center" style="padding: 15px;">
 
-*This project is open source and available under the MIT License.*
+| Contact Method | Kawaii Details | Status |
+|----------------|----------------|--------|
+| 🐛 **Issues** | [GitHub Issues](https://github.com/Tiarawr/CheckmyKic/issues) | [![Issues](https://img.shields.io/github/issues/Tiarawr/CheckmyKic?color=FF69B4)](https://github.com/Tiarawr/CheckmyKic/issues) |
+| 💻 **Kawaii Maintainer** | [@Tiarawr](https://github.com/Tiarawr) | [![GitHub](https://img.shields.io/badge/GitHub-💖_Tiarawr-FF69B4?logo=github&logoColor=white)](https://github.com/Tiarawr) |
+| 🌐 **Live Magic** | [checkmykicks.my.id](https://checkmykicks.my.id) | [![Website](https://img.shields.io/badge/Website-🌸_Live_Magic-9370DB)](https://checkmykicks.my.id) |
+| 📧 **Email** | Technical Support with Sparkles | ✨ Available ✨ |
+
+</td>
+</tr>
+</table>
 
 </div>
 
 ---
 
+## 📜 Magical License 📜
+
 <div align="center">
 
-### 👟 **Built with Passion for Authentic Sneakers**
+[![License: MIT](https://img.shields.io/badge/License-MIT_with_Sparkles-FFD700?style=for-the-badge&logoColor=white)](https://opensource.org/licenses/MIT)
 
-**Developed by [@Tiarawr](https://github.com/Tiarawr)**
+**🌟 MIT License © 2025 CheckMyKicks 🌟**
 
-[![Built with Love](https://img.shields.io/badge/Built%20with-❤️-red?style=for-the-badge)](https://github.com/Tiarawr/CheckmyKic)
-[![Node.js](https://img.shields.io/badge/Powered%20by-Node.js-green?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
-[![Xendit](https://img.shields.io/badge/Payments%20by-Xendit-blue?style=for-the-badge)](https://xendit.co/)
+*This magical project is open source and available under the MIT License with extra kawaii sparkles! ✨*
 
-*Last updated: June 18, 2025*
+</div>
 
 ---
 
-**⭐ Star this repository if you find it helpful!**
+<div align="center" style="background: linear-gradient(135deg, #FFE4E6, #E6E6FA); padding: 30px; border-radius: 25px; border: 4px solid #FFB6C1; margin: 20px 0;">
 
-</div>
+### 👟✨ **Built with Infinite Love for Authentic Sneakers** ✨👟
+
+<div style="font-size: 20px; margin: 15px 0;">
+🌸 **Lovingly crafted by [@Tiarawr](https://github.com/Tiarawr)** 🌸
